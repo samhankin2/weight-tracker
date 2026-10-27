@@ -9,6 +9,7 @@ import './app.css'
 import { store } from './appStore'
 import { openLogWeightSheet } from './sheets/logWeight'
 import { openPhaseSheet } from './sheets/phaseSheet'
+import { openImportListSheet } from './sheets/importList'
 import { renderDashboard } from './views/dashboard'
 import { renderHistory } from './views/history'
 import { renderSettings } from './views/settings'
@@ -209,6 +210,7 @@ class App {
           onReplaceState: (next) => store.replaceState(next),
           onReset: () => store.reset(),
           onManagePhases: () => this.setTab('dashboard'),
+          onImportList: () => this.openImportListSheet(),
         })
     }
   }
@@ -276,6 +278,16 @@ class App {
       },
       onDelete: (pid) => {
         void this.deletePhase(pid)
+      },
+    })
+  }
+
+  private openImportListSheet(): void {
+    const state = store.get()
+    openImportListSheet({
+      existing: state.entries,
+      onImport: (entries) => {
+        store.replaceEntries(entries)
       },
     })
   }

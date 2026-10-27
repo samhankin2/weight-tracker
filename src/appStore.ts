@@ -150,6 +150,26 @@ class Store {
     this.flush()
   }
 
+  /**
+   * Replace all weigh-ins with the given set. Used by the list importer,
+   * which merges pasted entries over the existing ones.
+   */
+  replaceEntries(entries: { date: string; weightKg: number; note?: string }[]): void {
+    const now = Date.now()
+    const existing = new Map(this.state.entries.map((e) => [e.date, e]))
+    const next = entries.map((entry) => {
+      const prior = existing.get(entry.date)
+      return {
+        date: entry.date,
+        weightKg: entry.weightKg,
+        note: entry.note?.trim() || undefined,
+        createdAt: prior?.createdAt ?? now,
+        updatedAt: now,
+      }
+    })
+    this.commit({ ...this.state, entries: next })
+  }
+
   /** Reset everything. */
   reset(): void {
     this.commit({ entries: [], phases: [], profile: { ...this.state.profile }, version: 1 })

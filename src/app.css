@@ -850,3 +850,203 @@ body {
   color: var(--color-text-muted);
   line-height: var(--leading-body);
 }
+
+/* ---- Import a list ---------------------------------------------------- */
+
+.import-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.import-input-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+
+.import-textarea {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  min-height: 9rem;
+  padding: var(--space-3);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+}
+
+.import-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 30%, transparent);
+}
+
+.import-input-row .button--small {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.import-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.import-hint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.import-hint--error {
+  color: var(--color-danger);
+}
+
+.import-hint-example {
+  color: var(--color-text-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.import-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.import-count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.import-count strong {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.import-count--new strong {
+  color: var(--color-accent);
+}
+
+.import-count--conflict strong {
+  color: var(--color-text);
+}
+
+.import-count--skipped strong {
+  color: var(--color-text-subtle);
+}
+
+.import-preview {
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.import-preview-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.import-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.import-row:last-child {
+  border-bottom: none;
+}
+
+.import-row-date {
+  flex: 0 0 6rem;
+  color: var(--color-text-muted);
+}
+
+.import-row-weight {
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.import-row-note {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-text-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.import-row-badge {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: var(--text-xs);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: var(--weight-medium);
+}
+
+.import-more {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+.import-skipped-details {
+  font-size: var(--text-sm);
+}
+
+.import-skipped-summary {
+  cursor: pointer;
+  color: var(--color-text-muted);
+  min-height: var(--touch-target);
+  display: flex;
+  align-items: center;
+}
+
+.import-skipped-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.import-skipped-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: var(--space-2);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.import-skipped-line {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.import-skipped-reason {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}

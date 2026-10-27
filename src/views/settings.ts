@@ -14,6 +14,8 @@ export interface SettingsCallbacks {
   onReplaceState: (state: AppState) => void
   onReset: () => void
   onManagePhases: () => void
+  /** Open the paste-a-list importer. */
+  onImportList: () => void
 }
 
 export function renderSettings(state: AppState, cb: SettingsCallbacks): HTMLElement {
@@ -178,6 +180,30 @@ export function renderSettings(state: AppState, cb: SettingsCallbacks): HTMLElem
     fileInput,
   ])
 
+  // ---- Import a list ----------------------------------------------------
+  const listImportButton = el(
+    'button',
+    {
+      type: 'button',
+      class: 'button button--secondary',
+      'data-focus-key': 'settings-import-list',
+      onclick: cb.onImportList,
+    },
+    [Icon('upload', { size: 18 }), el('span', {}, 'Import a list')],
+  )
+
+  const listImportCard = el('section', { class: 'card', 'aria-label': 'Import a list' }, [
+    el('h2', { class: 'card-title' }, [
+      Icon('upload', { size: 18 }),
+      el('span', {}, 'Import a list'),
+    ]),
+    el('p', { class: 'card-hint' }, [
+      'Paste the weigh-ins you have been keeping in your notes — one per line, date then weight. ',
+      el('span', { class: 'import-hint-example' }, 'e.g. 5 Mar 2026 74.5'),
+    ]),
+    listImportButton,
+  ])
+
   // ---- Phases shortcut --------------------------------------------------
   const phasesCard = el('section', { class: 'card', 'aria-label': 'Phases' }, [
     el('h2', { class: 'card-title' }, [Icon('flag', { size: 18 }), el('span', {}, 'Training phases')]),
@@ -220,6 +246,7 @@ export function renderSettings(state: AppState, cb: SettingsCallbacks): HTMLElem
     ]),
     profileCard,
     phasesCard,
+    listImportCard,
     dataCard,
     resetCard,
     aboutCard,
