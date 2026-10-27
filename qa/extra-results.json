@@ -1,0 +1,177 @@
+{
+  "results": [
+    {
+      "id": "Y0",
+      "name": "Seeded state loads (60 entries)",
+      "ok": true,
+      "details": {
+        "headline": "73.0",
+        "entries": 5
+      }
+    },
+    {
+      "id": "Y1",
+      "name": "Goal progress card renders",
+      "ok": true,
+      "details": {
+        "goalCard": "Goal\n100%\n+2.0 kg to go",
+        "progressNow": "100",
+        "headline": "73.0",
+        "chartFrame": {
+          "children": 0,
+          "h": 240,
+          "hidden": false
+        }
+      }
+    },
+    {
+      "id": "Y2",
+      "name": "After scrolling a long History list, switching to Settings shows its header",
+      "ok": false,
+      "details": {
+        "histBottom": {
+          "y": 3794,
+          "max": 3794,
+          "footer": "Last entry: 2026-10-24"
+        },
+        "afterTab": {
+          "y": 734,
+          "h1Text": "Settings",
+          "h1Top": -698,
+          "h1Visible": false,
+          "firstCardTop": -645.8125,
+          "max": 734
+        }
+      }
+    },
+    {
+      "id": "Y3",
+      "name": "History footer formats the last-entry date for humans",
+      "ok": false,
+      "details": {
+        "footer": "Last entry: 2026-10-24",
+        "months": [
+          "October 2026",
+          "September 2026",
+          "August 2026"
+        ],
+        "rows": 60
+      }
+    },
+    {
+      "id": "Y4",
+      "name": "Focus moves into the dialog on open",
+      "ok": false,
+      "details": {
+        "cls": "fab",
+        "inPanel": false
+      }
+    },
+    {
+      "id": "Y5",
+      "name": "Focus is trapped inside the modal when tabbing",
+      "ok": false,
+      "details": [
+        "BUTTON.tab-button[OUT]",
+        "BUTTON.tab-button[OUT]",
+        "BUTTON.tab-button[OUT]",
+        "BUTTON.icon-button sheet-cl[in]",
+        "INPUT.big-number-value[in]",
+        "BUTTON.step-button step-but[in]",
+        "BUTTON.step-button step-but[in]",
+        "INPUT.field-input[in]"
+      ]
+    },
+    {
+      "id": "Y6",
+      "name": "Escape closes the sheet when focus was left on the FAB (as the app does)",
+      "ok": false,
+      "details": {}
+    },
+    {
+      "id": "Y7",
+      "name": "Tablet: FAB stays inside the centered content column",
+      "ok": false,
+      "details": {
+        "shell": {
+          "l": 144,
+          "r": 624,
+          "w": 480
+        },
+        "tab": {
+          "l": 307.0390625,
+          "r": 460.9609375,
+          "w": 153.921875
+        },
+        "fab": {
+          "l": 692,
+          "r": 752,
+          "t": 884
+        },
+        "sw": 768,
+        "iw": 768
+      }
+    },
+    {
+      "id": "Y8",
+      "name": "Tablet: tab bar is centered under the content column",
+      "ok": true,
+      "details": {
+        "shell": {
+          "l": 144,
+          "r": 624,
+          "w": 480
+        },
+        "tab": {
+          "l": 307.0390625,
+          "r": 460.9609375,
+          "w": 153.921875
+        },
+        "fab": {
+          "l": 692,
+          "r": 752,
+          "t": 884
+        },
+        "sw": 768,
+        "iw": 768
+      }
+    },
+    {
+      "id": "Y9",
+      "name": "320px: all chart-range options fit without horizontal scrolling",
+      "ok": false,
+      "details": {
+        "seg": {
+          "l": 49,
+          "w": 222
+        },
+        "segScrollW": 296,
+        "segClientW": 220,
+        "last": {
+          "l": 292.59375,
+          "r": 342.40625
+        },
+        "card": {
+          "l": 32,
+          "r": 288
+        },
+        "sw": 320,
+        "iw": 320
+      }
+    }
+  ],
+  "logs": [
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected."
+  ]
+}

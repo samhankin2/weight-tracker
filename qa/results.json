@@ -1,0 +1,1328 @@
+{
+  "results": [
+    {
+      "id": "A1",
+      "name": "No console errors / page errors on first load",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "A2",
+      "name": "Empty state present",
+      "ok": true,
+      "details": [
+        "Nothing to chart yet",
+        "No weigh-ins yet"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "FAB 60x60 bottom-right and does not overlap tab bar",
+      "ok": true,
+      "details": {
+        "fab": {
+          "x": 284,
+          "y": 600,
+          "width": 60,
+          "height": 60,
+          "top": 600,
+          "right": 344,
+          "bottom": 660,
+          "left": 284
+        },
+        "tabTop": 672,
+        "gap": 12
+      }
+    },
+    {
+      "id": "A4",
+      "name": "No horizontal overflow at 360",
+      "ok": true,
+      "details": {
+        "sw": 360,
+        "iw": 360
+      }
+    },
+    {
+      "id": "A5",
+      "name": "Dashboard has an h1 page heading",
+      "ok": false,
+      "details": {
+        "h1": []
+      }
+    },
+    {
+      "id": "A6",
+      "name": "Log sheet fully visible, not clipped by viewport bottom",
+      "ok": true,
+      "details": {
+        "panel": {
+          "x": 0,
+          "y": 169.65625,
+          "width": 360,
+          "height": 570.34375,
+          "top": 169.65625,
+          "right": 360,
+          "bottom": 740,
+          "left": 0
+        },
+        "panelVisible": true,
+        "panelBottomGap": 0,
+        "panelTop": 169.65625,
+        "save": {
+          "x": 21,
+          "y": 668,
+          "width": 318,
+          "height": 56,
+          "top": 668,
+          "right": 339,
+          "bottom": 724,
+          "left": 21
+        },
+        "saveInViewport": true,
+        "saveHit": true,
+        "value": "0.0",
+        "active": "Log weight",
+        "backdrop": true,
+        "dialogTitle": "Log weight",
+        "docH": 1743,
+        "innerH": 740
+      }
+    },
+    {
+      "id": "A7",
+      "name": "Save button reachable without scrolling",
+      "ok": true,
+      "details": {
+        "save": {
+          "x": 21,
+          "y": 668,
+          "width": 318,
+          "height": 56,
+          "top": 668,
+          "right": 339,
+          "bottom": 724,
+          "left": 21
+        }
+      }
+    },
+    {
+      "id": "A8",
+      "name": "Big number input visible with 0.0 default",
+      "ok": true,
+      "details": {
+        "value": "0.0"
+      }
+    },
+    {
+      "id": "A9",
+      "name": "Focus lands on weight input when sheet opens",
+      "ok": false,
+      "details": {
+        "active": "Log weight"
+      }
+    },
+    {
+      "id": "A10",
+      "name": "Tapping backdrop closes sheet",
+      "ok": true,
+      "details": {
+        "exists": false
+      }
+    },
+    {
+      "id": "B1",
+      "name": "Stepper +/- changes displayed number correctly (0.0 -> +3 = 0.3 -> -1 = 0.2)",
+      "ok": true,
+      "details": {
+        "v0": "0.0",
+        "v3": "0.3",
+        "v2": "0.2"
+      }
+    },
+    {
+      "id": "B2",
+      "name": "Typing a weight into the prefilled 0.0 field without select-all yields the typed weight",
+      "ok": false,
+      "details": {
+        "fumbleValue": "0.0745",
+        "note": "Field pre-set to 0.0, not auto-selected; typing appends"
+      }
+    },
+    {
+      "id": "B3",
+      "name": "Typing a weight after select-all gives 74.5",
+      "ok": true,
+      "details": {
+        "typed": "74.5"
+      }
+    },
+    {
+      "id": "B4",
+      "name": "Save closes sheet and headline shows 74.5 kg / Today",
+      "ok": true,
+      "details": {
+        "num": "74.5",
+        "unit": "kg",
+        "date": "Today",
+        "toast": "Weight saved",
+        "sheetGone": true
+      }
+    },
+    {
+      "id": "B5",
+      "name": "Implausible weight (0.07 kg) is rejected",
+      "ok": false,
+      "details": {
+        "sheetOpen": false,
+        "toast": "Weigh-in updated",
+        "headline": "0.1"
+      }
+    },
+    {
+      "id": "B6",
+      "name": "Save button clickable with pointer (no stepper required)",
+      "ok": true,
+      "details": {
+        "value": "74.5",
+        "dateLabel": "Tue 27 Oct",
+        "subtitle": "Tue 27 Oct"
+      }
+    },
+    {
+      "id": "B7",
+      "name": "Entries stored; headline shows latest (74.5, Today)",
+      "ok": true,
+      "details": {
+        "num": "74.5",
+        "date": "Today",
+        "recent": [
+          "Today\n74.5 kg\n−0.6 kg",
+          "Tomorrow\n75.1 kg\n−1.1 kg",
+          "Tue 15 Sep\n76.2 kg"
+        ],
+        "lsEntries": [
+          "2026-10-27=74.5",
+          "2026-10-26=75.1",
+          "2026-09-15=76.2"
+        ]
+      }
+    },
+    {
+      "id": "B8",
+      "name": "Logging for an arbitrary past date saves under the chosen date",
+      "ok": true,
+      "details": [
+        "2026-10-27=74.5",
+        "2026-10-26=75.1",
+        "2026-09-15=76.2"
+      ]
+    },
+    {
+      "id": "B9",
+      "name": "Yesterday's entry is labelled \"Yesterday\" (not \"Tomorrow\")",
+      "ok": false,
+      "details": {
+        "row": "Tomorrow\n75.1 kg\n−1.1 kg",
+        "recent": [
+          "Today\n74.5 kg\n−0.6 kg",
+          "Tomorrow\n75.1 kg\n−1.1 kg",
+          "Tue 15 Sep\n76.2 kg"
+        ]
+      }
+    },
+    {
+      "id": "C1",
+      "name": "Chart canvas is present in the DOM after 2 entries",
+      "ok": false,
+      "details": {
+        "canvasInDom": false,
+        "canvasRect": null,
+        "frameChildren": 0,
+        "frameRect": {
+          "x": 49,
+          "y": 291.171875,
+          "width": 262,
+          "height": 240,
+          "top": 291.171875,
+          "right": 311,
+          "bottom": 531.171875,
+          "left": 49
+        },
+        "frameHidden": false,
+        "pixels": null,
+        "chartSectionText": "Trend\n30d\n90d\n6mo\n1y\nAll",
+        "canvasAria": null
+      }
+    },
+    {
+      "id": "C2",
+      "name": "Chart frame has non-zero size and renders pixels",
+      "ok": false,
+      "details": {
+        "canvasInDom": false,
+        "canvasRect": null,
+        "frameChildren": 0,
+        "frameRect": {
+          "x": 49,
+          "y": 291.171875,
+          "width": 262,
+          "height": 240,
+          "top": 291.171875,
+          "right": 311,
+          "bottom": 531.171875,
+          "left": 49
+        },
+        "frameHidden": false,
+        "pixels": null,
+        "chartSectionText": "Trend\n30d\n90d\n6mo\n1y\nAll",
+        "canvasAria": null
+      }
+    },
+    {
+      "id": "C3",
+      "name": "Segmented control switches ranges (30d/6mo/1y/All/90d) without errors",
+      "ok": true,
+      "details": [
+        {
+          "label": "30d",
+          "clicked": true,
+          "checked": [
+            "30d"
+          ],
+          "ls": 30
+        },
+        {
+          "label": "6mo",
+          "clicked": true,
+          "checked": [
+            "6mo"
+          ],
+          "ls": 180
+        },
+        {
+          "label": "1y",
+          "clicked": true,
+          "checked": [
+            "1y"
+          ],
+          "ls": 365
+        },
+        {
+          "label": "All",
+          "clicked": true,
+          "checked": [
+            "All"
+          ],
+          "ls": 0
+        },
+        {
+          "label": "90d",
+          "clicked": true,
+          "checked": [
+            "90d"
+          ],
+          "ls": 90
+        }
+      ]
+    },
+    {
+      "id": "D1",
+      "name": "New phase sheet opens with defaults (ongoing checked, empty name)",
+      "ok": true,
+      "details": {
+        "open": true,
+        "title": "New phase",
+        "swatches": 8,
+        "ongoing": true,
+        "endDisabled": true,
+        "nameVal": "",
+        "actions": [
+          "Add phase"
+        ]
+      }
+    },
+    {
+      "id": "D2",
+      "name": "Phase appears in Phases card with name + date range",
+      "ok": true,
+      "details": {
+        "legend": "Bulk\nOct 27, 2026 – ongoing",
+        "items": [
+          "Bulk\nOct 27, 2026 – ongoing"
+        ],
+        "swatchColors": [
+          "rgb(245, 158, 11)"
+        ],
+        "persisted": [
+          {
+            "name": "Bulk",
+            "startDate": "2026-10-27",
+            "endDate": null,
+            "color": "#f59e0b",
+            "id": "phase_mvpxpiuv_9xg424",
+            "createdAt": 1793060135095
+          }
+        ],
+        "toast": "Phase added",
+        "canvas": false
+      }
+    },
+    {
+      "id": "D3",
+      "name": "Phase persisted to localStorage with chosen colour",
+      "ok": true,
+      "details": [
+        {
+          "name": "Bulk",
+          "startDate": "2026-10-27",
+          "endDate": null,
+          "color": "#f59e0b",
+          "id": "phase_mvpxpiuv_9xg424",
+          "createdAt": 1793060135095
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "name": "Phase shading visible on chart",
+      "ok": false,
+      "details": {
+        "note": "Blocked: canvas not in DOM",
+        "canvas": false
+      }
+    },
+    {
+      "id": "D5",
+      "name": "Edit phase sheet opens prefilled",
+      "ok": true,
+      "details": {
+        "title": "Edit phase",
+        "subtitle": "27 Oct 2026 – ongoing",
+        "name": "Bulk",
+        "actions": [
+          "Delete",
+          "Save changes"
+        ]
+      }
+    },
+    {
+      "id": "D6",
+      "name": "Phase edit updates the legend + storage",
+      "ok": true,
+      "details": {
+        "legend": "Bulk v2\nOct 27, 2026 – ongoing",
+        "phases": [
+          {
+            "name": "Bulk v2",
+            "startDate": "2026-10-27",
+            "endDate": null,
+            "color": "#f59e0b",
+            "id": "phase_mvpxpiuv_9xg424",
+            "createdAt": 1793060135095
+          }
+        ]
+      }
+    },
+    {
+      "id": "D7",
+      "name": "Phase delete asks for confirmation",
+      "ok": true,
+      "details": {
+        "title": "Delete \"Bulk v2\"?",
+        "buttons": [
+          "Cancel",
+          "Delete phase"
+        ]
+      }
+    },
+    {
+      "id": "D8",
+      "name": "Phase delete removes legend entry and storage",
+      "ok": true,
+      "details": {
+        "legend": "No phases yet",
+        "items": 0,
+        "phases": 0,
+        "toast": "Phase deleted"
+      }
+    },
+    {
+      "id": "E1",
+      "name": "History shows all entries grouped by month (2 months)",
+      "ok": true,
+      "details": {
+        "months": [
+          "October 2026",
+          "September 2026"
+        ],
+        "rows": [
+          "27\n74.5 kg\n−0.6 kg",
+          "26\n75.1 kg\n−1.1 kg",
+          "15\n76.2 kg\n—"
+        ],
+        "subtitle": "3 weigh-ins",
+        "footer": "Last entry: today",
+        "h1": "History",
+        "overflow": {
+          "sw": 360,
+          "iw": 360
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "name": "Tapping history row opens sheet pre-filled with date + value",
+      "ok": true,
+      "details": {
+        "title": "Edit weigh-in",
+        "subtitle": "Tue 27 Oct",
+        "date": "2026-10-27",
+        "value": "74.5",
+        "deleteBtn": true
+      }
+    },
+    {
+      "id": "E3",
+      "name": "Delete shows confirm dialog, Cancel focused for destructive action",
+      "ok": true,
+      "details": {
+        "title": "Delete weigh-in?",
+        "msg": "This weigh-in will be removed. This cannot be undone.",
+        "buttons": [
+          "Cancel",
+          "Delete"
+        ],
+        "layers": 1,
+        "focused": ""
+      }
+    },
+    {
+      "id": "E4",
+      "name": "After confirming, entry is gone",
+      "ok": true,
+      "details": {
+        "rows": 2,
+        "subtitle": "2 weigh-ins",
+        "toast": "Weigh-in deleted",
+        "headline": []
+      }
+    },
+    {
+      "id": "F1",
+      "name": "Settings fields are labelled",
+      "ok": true,
+      "details": [
+        {
+          "label": "Starting weight in kilograms",
+          "value": ""
+        },
+        {
+          "label": "Goal weight in kilograms",
+          "value": ""
+        },
+        {
+          "label": "Height in centimetres",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "F1b",
+      "name": "Settings inputs are hit-testable at their centre point",
+      "ok": true,
+      "details": [
+        {
+          "label": "Starting weight in kilograms",
+          "rect": {
+            "top": 207.6,
+            "bottom": 259.2,
+            "left": 49,
+            "width": 238.5,
+            "height": 51.6
+          },
+          "hitTag": "INPUT",
+          "hitCls": "field-input",
+          "hitIsSelf": true
+        },
+        {
+          "label": "Goal weight in kilograms",
+          "rect": {
+            "top": 301.5,
+            "bottom": 353.1,
+            "left": 49,
+            "width": 238.5,
+            "height": 51.6
+          },
+          "hitTag": "INPUT",
+          "hitCls": "field-input",
+          "hitIsSelf": true
+        },
+        {
+          "label": "Height in centimetres",
+          "rect": {
+            "top": 344.5,
+            "bottom": 396.1,
+            "left": 49,
+            "width": 235,
+            "height": 51.6
+          },
+          "hitTag": "INPUT",
+          "hitCls": "field-input",
+          "hitIsSelf": true
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "name": "Reload preserves entries, phases, profile",
+      "ok": true,
+      "details": {
+        "raw": "{\"entries\":[{\"date\":\"2026-10-26\",\"weightKg\":75.1,\"createdAt\":1793060130379,\"updatedAt\":1793060130379},{\"date\":\"2026-09-15\",\"weightKg\":76.2,\"createdAt\":1793060131298,\"updatedAt\":1793060131298},{\"date\":\"2026-10-27\",\"weightKg\":74.5,\"createdAt\":1793060141825,\"updatedAt\":1793060141825}],\"phases\":[{\"name\":\"Bulk\",\"startDate\":\"2026-10-27\",\"endDate\":null,\"color\":\"#3b82f6\",\"id\":\"phase_mvpxplef_82t3s2\",\"createdAt\":1793060138391}],\"profile\":{\"startWeightKg\":80,\"goalWeightKg\":75,\"heightCm\":180,\"unit\":\"kg\",\"chartWindowDays\":90},\"version\":1}",
+        "entries": 3,
+        "phases": 1,
+        "start": 80,
+        "goal": 75,
+        "height": 180,
+        "view": "74.5"
+      }
+    },
+    {
+      "id": "F3",
+      "name": "New page in same browser profile sees the data",
+      "ok": true,
+      "details": {
+        "entries": 3,
+        "headline": "74.5",
+        "phase": "Bulk\nOct 27, 2026 – ongoing"
+      }
+    },
+    {
+      "id": "G1",
+      "name": "Switching tab scrolls to top of new view",
+      "ok": false,
+      "details": {
+        "scrollBefore": 1015,
+        "y": 88,
+        "hostScroll": 0,
+        "scrollH": 828,
+        "innerH": 740
+      }
+    },
+    {
+      "id": "G2",
+      "name": "FAB does not cover the last list row at max scroll",
+      "ok": true,
+      "details": {
+        "fab": {
+          "x": 284,
+          "y": 600,
+          "width": 60,
+          "height": 60,
+          "top": 600,
+          "right": 344,
+          "bottom": 660,
+          "left": 284
+        },
+        "rowRects": [
+          {
+            "top": 60.96875,
+            "bottom": 120.96875,
+            "left": 32,
+            "right": 269.25
+          },
+          {
+            "top": 129.96875,
+            "bottom": 189.96875,
+            "left": 32,
+            "right": 269.25
+          },
+          {
+            "top": 244.359375,
+            "bottom": 304.359375,
+            "left": 32,
+            "right": 302
+          }
+        ],
+        "overlapped": 0,
+        "scrollY": 88,
+        "maxScroll": 88
+      }
+    },
+    {
+      "id": "H1",
+      "name": "All interactive elements have accessible names (dashboard)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "H2",
+      "name": "All tap targets >= 44x44 (dashboard)",
+      "ok": false,
+      "details": [
+        {
+          "tag": "BUTTON",
+          "cls": "button button--ghost button--small",
+          "label": "New",
+          "w": 79.8,
+          "h": 40.4
+        }
+      ]
+    },
+    {
+      "id": "H3",
+      "name": "Text contrast >= 4.5:1 (dashboard)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "H4",
+      "name": "No duplicate ids (dashboard)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "H5",
+      "name": "All interactive elements have accessible names (log sheet)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "H6",
+      "name": "All tap targets >= 44x44 (log sheet)",
+      "ok": false,
+      "details": [
+        {
+          "tag": "BUTTON",
+          "cls": "button button--ghost button--small",
+          "label": "New",
+          "w": 79.8,
+          "h": 40.4
+        }
+      ]
+    },
+    {
+      "id": "H7",
+      "name": "Text contrast >= 4.5:1 (log sheet)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "H12",
+      "name": "Sheet is a modal dialog with aria-modal",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "ariaModal": "true",
+        "activeTag": "BUTTON",
+        "activeCls": "fab",
+        "activeLabel": "Log weight",
+        "focusInsideDialog": false,
+        "bodyOverflow": "hidden",
+        "topHit": "field-input"
+      }
+    },
+    {
+      "id": "H13",
+      "name": "Focus moves inside the dialog when it opens",
+      "ok": false,
+      "details": {
+        "role": "dialog",
+        "ariaModal": "true",
+        "activeTag": "BUTTON",
+        "activeCls": "fab",
+        "activeLabel": "Log weight",
+        "focusInsideDialog": false,
+        "bodyOverflow": "hidden",
+        "topHit": "field-input"
+      }
+    },
+    {
+      "id": "H14",
+      "name": "Background scroll locked while sheet is open",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "ariaModal": "true",
+        "activeTag": "BUTTON",
+        "activeCls": "fab",
+        "activeLabel": "Log weight",
+        "focusInsideDialog": false,
+        "bodyOverflow": "hidden",
+        "topHit": "field-input"
+      }
+    },
+    {
+      "id": "H15",
+      "name": "Escape closes the sheet from the current focus",
+      "ok": false,
+      "details": {
+        "open": true
+      }
+    },
+    {
+      "id": "H16",
+      "name": "Sheet contains focusable controls",
+      "ok": true,
+      "details": {
+        "count": 8,
+        "seen": [
+          {
+            "i": 0,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 1,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 2,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 3,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 4,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 5,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 6,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 7,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 8,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          },
+          {
+            "i": 9,
+            "activeInPanel": true,
+            "tag": "INPUT"
+          }
+        ]
+      }
+    },
+    {
+      "id": "H8",
+      "name": "Focus is visible when tabbing",
+      "ok": true,
+      "details": {
+        "visibleFocus": 7,
+        "focusChecks": [
+          {
+            "tag": "BUTTON",
+            "cls": "tab-button",
+            "label": "Trend",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgb(20, 108, 90)"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "tab-button",
+            "label": "History",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgb(102, 115, 108)"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "tab-button",
+            "label": "Settings",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgb(102, 115, 108)"
+          },
+          {
+            "tag": "BODY",
+            "cls": "",
+            "label": "Skip to content74.5kgTodayTren",
+            "outline": "none 3px rgb(25, 35, 31)",
+            "shadow": "none",
+            "border": "rgb(25, 35, 31)"
+          },
+          {
+            "tag": "A",
+            "cls": "skip-link",
+            "label": "Skip to content",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "segmented-option",
+            "label": "90d",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "rgba(28, 44, 35, 0.08) 0px 1px 4px 0px",
+            "border": "rgb(25, 35, 31)"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "button button--ghost button--small",
+            "label": "New",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "phase-legend__action icon-button phase-l",
+            "label": "Edit Bulk phase",
+            "outline": "solid 3px rgb(9, 105, 168)",
+            "shadow": "none",
+            "border": "rgb(85, 99, 92)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "H9",
+      "name": "All tap targets >= 44x44 (phase sheet)",
+      "ok": false,
+      "details": [
+        {
+          "tag": "BUTTON",
+          "cls": "button button--ghost button--small",
+          "label": "New",
+          "w": 79.8,
+          "h": 40.4
+        },
+        {
+          "tag": "INPUT",
+          "cls": "checkbox-input",
+          "label": "",
+          "w": 22,
+          "h": 22
+        }
+      ]
+    },
+    {
+      "id": "H10",
+      "name": "All interactive elements have accessible names (phase sheet)",
+      "ok": false,
+      "details": [
+        {
+          "tag": "INPUT",
+          "cls": "checkbox-input",
+          "type": "checkbox",
+          "html": "<input type=\"checkbox\" class=\"checkbox-input\">"
+        }
+      ]
+    },
+    {
+      "id": "H11",
+      "name": "Text contrast >= 4.5:1 (phase sheet)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "I-360a",
+      "name": "No horizontal overflow at 360px",
+      "ok": true,
+      "details": {
+        "sw": 360,
+        "iw": 360,
+        "offenders": []
+      }
+    },
+    {
+      "id": "I-360b",
+      "name": "Log sheet Save button visible at 360x740",
+      "ok": true,
+      "details": {
+        "panel": {
+          "top": 155.4,
+          "bottom": 740,
+          "h": 584.6
+        },
+        "save": {
+          "top": 668,
+          "bottom": 724,
+          "w": 153,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 740
+      }
+    },
+    {
+      "id": "I-390a",
+      "name": "No horizontal overflow at 390px",
+      "ok": true,
+      "details": {
+        "sw": 390,
+        "iw": 390,
+        "offenders": []
+      }
+    },
+    {
+      "id": "I-390b",
+      "name": "Log sheet Save button visible at 390x844",
+      "ok": true,
+      "details": {
+        "panel": {
+          "top": 247.3,
+          "bottom": 844,
+          "h": 596.7
+        },
+        "save": {
+          "top": 772,
+          "bottom": 828,
+          "w": 168,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 844
+      }
+    },
+    {
+      "id": "I-320a",
+      "name": "No horizontal overflow at 320px",
+      "ok": false,
+      "details": {
+        "sw": 320,
+        "iw": 320,
+        "offenders": [
+          {
+            "tag": "BUTTON",
+            "cls": "segmented-option",
+            "left": 292.6,
+            "right": 342.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "I-320b",
+      "name": "Log sheet Save button visible at 320x568",
+      "ok": true,
+      "details": {
+        "panel": {
+          "top": 85.2,
+          "bottom": 568,
+          "h": 482.8
+        },
+        "save": {
+          "top": 496,
+          "bottom": 552,
+          "w": 133,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": true,
+        "contentScrollable": 101,
+        "innerH": 568
+      }
+    },
+    {
+      "id": "I-768a",
+      "name": "No horizontal overflow at 768px",
+      "ok": true,
+      "details": {
+        "sw": 768,
+        "iw": 768,
+        "offenders": []
+      }
+    },
+    {
+      "id": "I-768b",
+      "name": "Log sheet Save button visible at 768x1024",
+      "ok": true,
+      "details": {
+        "panel": {
+          "top": 211.7,
+          "bottom": 812.3,
+          "h": 600.6
+        },
+        "save": {
+          "top": 739.3,
+          "bottom": 795.3,
+          "w": 213,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 1024
+      }
+    },
+    {
+      "id": "J1",
+      "name": "Dark mode applies dark palette (not black-on-black)",
+      "ok": true,
+      "details": {
+        "bg": "rgb(16, 22, 19)",
+        "color": "rgb(237, 244, 239)",
+        "headline": "74.5",
+        "canvas": false,
+        "scheme": "dark"
+      }
+    },
+    {
+      "id": "J2",
+      "name": "Dark mode text contrast >= 4.5:1 (dashboard)",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "J3",
+      "name": "Dark mode log sheet contrast >= 4.5:1",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "J4",
+      "name": "Dark mode settings contrast >= 4.5:1",
+      "ok": true,
+      "details": []
+    },
+    {
+      "id": "K1",
+      "name": "prefers-reduced-motion respected (transitions ~0)",
+      "ok": false,
+      "details": {
+        "matches": true,
+        "transitionDuration": "1e-05s",
+        "animationDuration": "1e-05s"
+      }
+    },
+    {
+      "id": "Z1",
+      "name": "No uncaught JS errors during entire run",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "consoleLog": [
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected."
+  ],
+  "viewportReport": {
+    "320": {
+      "sw": 320,
+      "iw": 320,
+      "bodySw": 320,
+      "offenders": [
+        {
+          "tag": "BUTTON",
+          "cls": "segmented-option",
+          "left": 292.6,
+          "right": 342.4
+        }
+      ],
+      "emotion": "74.5",
+      "fab": {
+        "x": 244,
+        "y": 428,
+        "width": 60,
+        "height": 60,
+        "top": 428,
+        "right": 304,
+        "bottom": 488,
+        "left": 244
+      },
+      "tab": {
+        "x": 0,
+        "y": 500,
+        "width": 320,
+        "height": 68,
+        "top": 500,
+        "right": 320,
+        "bottom": 568,
+        "left": 0
+      },
+      "sheet": {
+        "panel": {
+          "top": 85.2,
+          "bottom": 568,
+          "h": 482.8
+        },
+        "save": {
+          "top": 496,
+          "bottom": 552,
+          "w": 133,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": true,
+        "contentScrollable": 101,
+        "innerH": 568
+      }
+    },
+    "360": {
+      "sw": 360,
+      "iw": 360,
+      "bodySw": 360,
+      "offenders": [],
+      "emotion": "74.5",
+      "fab": {
+        "x": 284,
+        "y": 600,
+        "width": 60,
+        "height": 60,
+        "top": 600,
+        "right": 344,
+        "bottom": 660,
+        "left": 284
+      },
+      "tab": {
+        "x": 0,
+        "y": 672,
+        "width": 360,
+        "height": 68,
+        "top": 672,
+        "right": 360,
+        "bottom": 740,
+        "left": 0
+      },
+      "sheet": {
+        "panel": {
+          "top": 155.4,
+          "bottom": 740,
+          "h": 584.6
+        },
+        "save": {
+          "top": 668,
+          "bottom": 724,
+          "w": 153,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 740
+      }
+    },
+    "390": {
+      "sw": 390,
+      "iw": 390,
+      "bodySw": 390,
+      "offenders": [],
+      "emotion": "74.5",
+      "fab": {
+        "x": 314,
+        "y": 704,
+        "width": 60,
+        "height": 60,
+        "top": 704,
+        "right": 374,
+        "bottom": 764,
+        "left": 314
+      },
+      "tab": {
+        "x": 0,
+        "y": 776,
+        "width": 390,
+        "height": 68,
+        "top": 776,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "sheet": {
+        "panel": {
+          "top": 247.3,
+          "bottom": 844,
+          "h": 596.7
+        },
+        "save": {
+          "top": 772,
+          "bottom": 828,
+          "w": 168,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 844
+      }
+    },
+    "768": {
+      "sw": 768,
+      "iw": 768,
+      "bodySw": 768,
+      "offenders": [],
+      "emotion": "74.5",
+      "fab": {
+        "x": 692,
+        "y": 884,
+        "width": 60,
+        "height": 60,
+        "top": 884,
+        "right": 752,
+        "bottom": 944,
+        "left": 692
+      },
+      "tab": {
+        "x": 307.0390625,
+        "y": 956,
+        "width": 153.921875,
+        "height": 68,
+        "top": 956,
+        "right": 460.9609375,
+        "bottom": 1024,
+        "left": 307.0390625
+      },
+      "sheet": {
+        "panel": {
+          "top": 211.7,
+          "bottom": 812.3,
+          "h": 600.6
+        },
+        "save": {
+          "top": 739.3,
+          "bottom": 795.3,
+          "w": 213,
+          "h": 56
+        },
+        "saveVisible": true,
+        "contentScroll": false,
+        "contentScrollable": 0,
+        "innerH": 1024
+      }
+    }
+  }
+}

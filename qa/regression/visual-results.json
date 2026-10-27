@@ -1,0 +1,54 @@
+{
+  "sheets": {
+    "light": {
+      "value": "75.0",
+      "visibility": "visible",
+      "hit": "INPUT.big-number-value",
+      "active": "Close dialog",
+      "formFilled": "kg0.1 kgDateTue 27 OctNote",
+      "saveVisible": true
+    },
+    "dark": {
+      "value": "75.0",
+      "visibility": "visible",
+      "hit": "INPUT.big-number-value",
+      "active": "Close dialog",
+      "formFilled": "kg0.1 kgDateTue 27 OctNote",
+      "saveVisible": true
+    }
+  },
+  "openToast": {
+    "text": "Enter a weight of at least 20 kg",
+    "tone": "error",
+    "visible": true,
+    "toast": {
+      "left": 49.28125,
+      "right": 310.703125,
+      "top": 12,
+      "bottom": 60
+    },
+    "fab": {
+      "left": 284,
+      "right": 344,
+      "top": 600,
+      "bottom": 660
+    },
+    "actionsTop": 651,
+    "intersectsFab": false,
+    "aboveActions": true,
+    "pointerEvents": "none",
+    "entries": 30
+  },
+  "closedToast": {
+    "visible": true,
+    "toast": {
+      "left": 49.28125,
+      "right": 310.703125,
+      "top": 540,
+      "bottom": 588
+    },
+    "intersectsFab": false,
+    "focusFab": true
+  },
+  "consoleIssues": []
+}

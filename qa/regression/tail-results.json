@@ -1,0 +1,297 @@
+{
+  "passed": 3,
+  "failed": 2,
+  "total": 5,
+  "results": [
+    {
+      "id": "13-toast-clears-fab",
+      "name": "Plausibility error toast does not intersect the FAB (3 attempts)",
+      "ok": false,
+      "details": [
+        {
+          "attempt": 1,
+          "opened": {
+            "open": true,
+            "title": "Edit weigh-in",
+            "value": "74.2",
+            "active": "Close dialog"
+          },
+          "focusState": {
+            "activeClass": "sheet-panel",
+            "selection": [
+              null,
+              null
+            ],
+            "value": "74.2"
+          },
+          "typedValue": "74.2",
+          "toast": {
+            "text": "Weigh-in updated",
+            "tone": "success",
+            "visible": true,
+            "rect": {
+              "left": 89.828125,
+              "right": 270.171875,
+              "top": 540,
+              "bottom": 588,
+              "width": 180.34375,
+              "height": 48
+            }
+          },
+          "sheetOpen": false,
+          "intersectsFab": false,
+          "returnedToFab": true,
+          "entries": 40,
+          "todayWeight": 74.2
+        },
+        {
+          "attempt": 2,
+          "opened": {
+            "open": true,
+            "title": "Edit weigh-in",
+            "value": "74.2",
+            "active": "Close dialog"
+          },
+          "focusState": {
+            "activeClass": "big-number-value",
+            "selection": [
+              0,
+              4
+            ],
+            "value": "74.2"
+          },
+          "typedValue": "0.5",
+          "toast": {
+            "text": "Enter a weight of at least 20 kg",
+            "tone": "error",
+            "visible": true,
+            "rect": {
+              "left": 49.28125,
+              "right": 310.703125,
+              "top": 12,
+              "bottom": 60,
+              "width": 261.421875,
+              "height": 48
+            }
+          },
+          "sheetOpen": true,
+          "intersectsFab": false,
+          "returnedToFab": false,
+          "entries": 40,
+          "todayWeight": 74.2
+        },
+        {
+          "attempt": 3,
+          "opened": {
+            "open": true,
+            "title": "Edit weigh-in",
+            "value": "74.2",
+            "active": "Close dialog"
+          },
+          "focusState": {
+            "activeClass": "big-number-value",
+            "selection": [
+              0,
+              4
+            ],
+            "value": "74.2"
+          },
+          "typedValue": "0.5",
+          "toast": {
+            "text": "Enter a weight of at least 20 kg",
+            "tone": "error",
+            "visible": true,
+            "rect": {
+              "left": 49.28125,
+              "right": 310.703125,
+              "top": 12,
+              "bottom": 60,
+              "width": 261.421875,
+              "height": 48
+            }
+          },
+          "sheetOpen": true,
+          "intersectsFab": false,
+          "returnedToFab": false,
+          "entries": 40,
+          "todayWeight": 74.2
+        }
+      ]
+    },
+    {
+      "id": "13b-toast-repeatable-focus",
+      "name": "Field receives focus/selection reliably on repeated sheet opens",
+      "ok": false,
+      "details": [
+        {
+          "focus": {
+            "activeClass": "sheet-panel",
+            "selection": [
+              null,
+              null
+            ],
+            "value": "74.2"
+          },
+          "typed": "74.2",
+          "toastTone": "success"
+        },
+        {
+          "focus": {
+            "activeClass": "big-number-value",
+            "selection": [
+              0,
+              4
+            ],
+            "value": "74.2"
+          },
+          "typed": "0.5",
+          "toastTone": "error"
+        },
+        {
+          "focus": {
+            "activeClass": "big-number-value",
+            "selection": [
+              0,
+              4
+            ],
+            "value": "74.2"
+          },
+          "typed": "0.5",
+          "toastTone": "error"
+        }
+      ]
+    },
+    {
+      "id": "sweep-phase-crud",
+      "name": "Create/edit/delete phase updates legend and chart shading",
+      "ok": true,
+      "details": {
+        "baselineLength": 15750,
+        "emptyLegend": "No phases yet",
+        "newSheet": {
+          "title": "New phase",
+          "ongoing": true
+        },
+        "afterCreate": {
+          "names": [
+            "Bulk"
+          ],
+          "ranges": [
+            "Oct 13, 2026 – ongoing"
+          ],
+          "chartLength": 17834
+        },
+        "createdState": 1,
+        "afterEdit": {
+          "names": [
+            "Cut"
+          ],
+          "stored": [
+            "Cut"
+          ],
+          "chartLength": 17834
+        },
+        "confirmTitle": "Delete \"Cut\"?",
+        "afterDelete": {
+          "names": [],
+          "empty": "No phases yet",
+          "chartLength": 15750,
+          "stored": 0
+        },
+        "chartRestoredToBaseline": true
+      }
+    },
+    {
+      "id": "sweep-settings-persist",
+      "name": "Start weight, goal, height persist across reload",
+      "ok": true,
+      "details": {
+        "savedProfile": {
+          "startWeightKg": 82,
+          "goalWeightKg": 75,
+          "heightCm": 180,
+          "unit": "kg",
+          "chartWindowDays": 90
+        },
+        "reloaded": {
+          "start": "82",
+          "goal": "75",
+          "height": "180",
+          "stored": {
+            "startWeightKg": 82,
+            "goalWeightKg": 75,
+            "heightCm": 180,
+            "unit": "kg",
+            "chartWindowDays": 90
+          }
+        }
+      }
+    },
+    {
+      "id": "sweep-export-import",
+      "name": "Export produces a valid JSON file and import restores entries/phases/profile",
+      "ok": true,
+      "details": {
+        "exportedFile": "C:\\Users\\hanki\\Downloads\\weight-backup-2026-10-27 (1).json",
+        "exportToast": {
+          "text": "Backup downloaded",
+          "tone": "success",
+          "visible": true,
+          "rect": {
+            "left": 82.90625,
+            "right": 277.078125,
+            "top": 540,
+            "bottom": 588,
+            "width": 194.171875,
+            "height": 48
+          }
+        },
+        "exported": {
+          "entries": 5,
+          "phases": 1,
+          "profile": {
+            "startWeightKg": 82,
+            "goalWeightKg": 75,
+            "heightCm": 180,
+            "unit": "kg",
+            "chartWindowDays": 90
+          }
+        },
+        "beforeExport": {
+          "entries": 5,
+          "phases": 1
+        },
+        "afterReset": {
+          "entries": 0,
+          "phases": 0
+        },
+        "afterImport": {
+          "entries": 5,
+          "phases": 1,
+          "profile": {
+            "startWeightKg": 82,
+            "goalWeightKg": 75,
+            "heightCm": 180,
+            "unit": "kg",
+            "chartWindowDays": 90
+          }
+        },
+        "importToast": {
+          "text": "Backup restored",
+          "tone": "success",
+          "visible": true,
+          "rect": {
+            "left": 96.015625,
+            "right": 263.96875,
+            "top": 540,
+            "bottom": 588,
+            "width": 167.953125,
+            "height": 48
+          }
+        },
+        "uploadError": null
+      }
+    }
+  ],
+  "consoleIssues": []
+}

@@ -1,0 +1,121 @@
+:root {
+  color-scheme: light;
+
+  /* Quiet, warm neutrals with a single botanical accent. */
+  --color-bg: #f3f5f1;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #e9ede8;
+  --color-text: #19231f;
+  --color-text-muted: #55635c;
+  --color-text-subtle: #66736c;
+  --color-border: #d5ddd7;
+  --color-border-strong: #78867e;
+  --color-accent: #146c5a;
+  --color-accent-hover: #0e5849;
+  --color-accent-soft: #e0efe9;
+  --color-on-accent: #ffffff;
+  --color-focus: #0969a8;
+  --color-up: #216b48;
+  --color-up-soft: #e1f0e7;
+  --color-down: #a23832;
+  --color-down-soft: #f8e8e5;
+  --color-neutral: #59665f;
+  --color-danger: #a52721;
+  --color-danger-hover: #841d18;
+  --color-danger-soft: #f8e8e5;
+  --color-on-danger: #ffffff;
+  --color-backdrop: rgb(15 25 20 / 48%);
+  --color-shadow: rgb(28 44 35 / 8%);
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-card: 1rem;
+  --radius-sheet: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgb(28 44 35 / 4%), 0 5px 18px var(--color-shadow);
+  --shadow-raised: 0 12px 40px rgb(18 30 24 / 16%);
+  --shadow-toast: 0 8px 28px rgb(18 30 24 / 20%);
+
+  --font-sans: "Avenir Next", "Segoe UI Variable", "Segoe UI", sans-serif;
+  --font-numeric: "Avenir Next", "Segoe UI Variable", "Segoe UI", sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-number: clamp(2.25rem, 10vw, 3rem);
+  --text-number-input: clamp(3rem, 15vw, 4.25rem);
+  --leading-tight: 1.15;
+  --leading-body: 1.6;
+  --weight-regular: 400;
+  --weight-medium: 550;
+  --weight-semibold: 650;
+  --weight-bold: 750;
+  --tracking-label: 0.075em;
+
+  --touch-target: 3rem;
+  --touch-target-primary: 4rem;
+  --content-max: 30rem;
+  --focus-ring-width: 3px;
+  --focus-ring: 0 0 0 3px var(--color-surface), 0 0 0 6px var(--color-focus);
+  --duration-fast: 140ms;
+  --duration-sheet: 220ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --z-sheet: 60;
+  --z-toast: 80;
+  --z-tab-bar: 30;
+  --z-fab: 40;
+  --tab-bar-height: 4.25rem;
+  --sheet-gutter: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #101613;
+    --color-surface: #18211c;
+    --color-surface-raised: #1e2923;
+    --color-surface-sunken: #111a15;
+    --color-text: #edf4ef;
+    --color-text-muted: #b2beb6;
+    --color-text-subtle: #a2afa7;
+    --color-border: #35433b;
+    --color-border-strong: #73837a;
+    --color-accent: #7bd8bb;
+    --color-accent-hover: #9be4cd;
+    --color-accent-soft: #203c32;
+    --color-on-accent: #09261c;
+    --color-focus: #79c7f4;
+    --color-up: #93ddb4;
+    --color-up-soft: #1d382a;
+    --color-down: #f0aaa3;
+    --color-down-soft: #412724;
+    --color-neutral: #b6c1ba;
+    --color-danger: #f0aaa3;
+    --color-danger-hover: #ffc2bc;
+    --color-danger-soft: #412724;
+    --color-on-danger: #35120f;
+    --color-backdrop: rgb(0 0 0 / 66%);
+    --color-shadow: rgb(0 0 0 / 24%);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 20%), 0 7px 22px var(--color-shadow);
+    --shadow-raised: 0 16px 48px rgb(0 0 0 / 42%);
+    --shadow-toast: 0 10px 32px rgb(0 0 0 / 44%);
+    --focus-ring: 0 0 0 3px var(--color-surface), 0 0 0 6px var(--color-focus);
+  }
+}

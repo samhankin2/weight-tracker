@@ -1,0 +1,128 @@
+[
+  {
+    "id": "V1-light",
+    "name": "Date input text is legible in light mode",
+    "ok": true,
+    "details": {
+      "color": "rgb(25, 35, 31)",
+      "bg": "rgb(255, 255, 255)",
+      "colorScheme": "light",
+      "value": "2026-10-27",
+      "h": 53.59375
+    }
+  },
+  {
+    "id": "V1-dark",
+    "name": "Date input text is legible in dark mode",
+    "ok": true,
+    "details": {
+      "color": "rgb(237, 244, 239)",
+      "bg": "rgb(24, 33, 28)",
+      "colorScheme": "dark",
+      "value": "2026-10-27",
+      "h": 53.59375
+    }
+  },
+  {
+    "id": "V2",
+    "name": "Segmented control supports arrow-key navigation and persists the window",
+    "ok": false,
+    "details": {
+      "before": "90d",
+      "after": {
+        "checked": [
+          "6mo"
+        ],
+        "ls": 180,
+        "focused": "\n    Skip to content74.2kgToday−1.40 kg/wk 7-day trendTrend30d90d6mo1yAllMetrics7-day avg74.8kgSmoothed trendTotal change−7.8kg↘DecreasingSince first entryWeekly rate−1.40kg/wk↘DecreasingOverall paceStreak40days→Holding steadyBest: 40Goal100%+0.8 kg to goPhasesNewShade the chart to mark stages like bulk or cut.CutOct 7, 2026 – ongoingRecentToday74.2 kg−0.2 kgTomorrow74.4 kg−0.2 kgSun 25 Oct74.6 kg−0.2 kgSat 24 Oct74.8 kg−0.2 kgFri 23 Oct75.0 kg−0.2 kgTrendHistorySettings\n    \n  \n\n"
+      }
+    }
+  },
+  {
+    "id": "V3",
+    "name": "Changing the date of an existing weigh-in moves it (no duplicate)",
+    "ok": true,
+    "details": {
+      "sheetInfo": {
+        "value": "74.1",
+        "date": "2026-10-27"
+      },
+      "today": "2026-10-27",
+      "changedTo": "2026-10-26",
+      "beforeCount": 40,
+      "afterDateChange": {
+        "entries": [
+          "2026-09-18=82",
+          "2026-09-19=81.8",
+          "2026-09-20=81.6",
+          "2026-09-21=81.4",
+          "2026-09-22=81.2",
+          "2026-09-23=81",
+          "2026-09-24=80.8",
+          "2026-09-25=80.6",
+          "2026-09-26=80.4",
+          "2026-09-27=80.2",
+          "2026-09-28=80",
+          "2026-09-29=79.8",
+          "2026-09-30=79.6",
+          "2026-10-01=79.4",
+          "2026-10-02=79.2",
+          "2026-10-03=79",
+          "2026-10-04=78.8",
+          "2026-10-05=78.6",
+          "2026-10-06=78.4",
+          "2026-10-07=78.2",
+          "2026-10-08=78",
+          "2026-10-09=77.8",
+          "2026-10-10=77.6",
+          "2026-10-11=77.4",
+          "2026-10-12=77.2",
+          "2026-10-13=77",
+          "2026-10-14=76.8",
+          "2026-10-15=76.6",
+          "2026-10-16=76.4",
+          "2026-10-17=76.2",
+          "2026-10-18=76",
+          "2026-10-19=75.8",
+          "2026-10-20=75.6",
+          "2026-10-21=75.4",
+          "2026-10-22=75.2",
+          "2026-10-23=75",
+          "2026-10-24=74.8",
+          "2026-10-25=74.6",
+          "2026-10-26=74.1",
+          "2026-10-27=74.2"
+        ],
+        "count": 40,
+        "toast": "Weigh-in updated"
+      }
+    }
+  },
+  {
+    "id": "V4",
+    "name": "Chart card exposes an accessible description/summary with data",
+    "ok": false,
+    "details": {
+      "trendCardInnerText": "Trend\n30d\n90d\n6mo\n1y\nAll",
+      "canvas": 0,
+      "imgRoles": [],
+      "frame": "<div class=\"chart-frame\"></div>"
+    }
+  },
+  {
+    "id": "V5",
+    "name": "Manifest icons exist (PWA install icon)",
+    "ok": false,
+    "details": [
+      {
+        "f": "icon-192.png",
+        "status": 304
+      },
+      {
+        "f": "icon-512.png",
+        "status": 200,
+        "ct": "text/html"
+      }
+    ]
+  }
+]

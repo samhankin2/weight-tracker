@@ -1,0 +1,870 @@
+{
+  "ranAt": "2026-10-27T01:03:35.648Z",
+  "passed": 16,
+  "failed": 6,
+  "total": 22,
+  "results": [
+    {
+      "id": "1-chart-canvas",
+      "name": "Canvas exists in .chart-frame, sized, and visibly drawn",
+      "ok": false,
+      "details": {
+        "canvasCount": 1,
+        "insideFrame": true,
+        "rect": {
+          "width": 262,
+          "height": 240,
+          "top": 288.78125,
+          "left": 49
+        },
+        "offsetParent": true,
+        "dataUrlLen": 18010,
+        "pixels": {
+          "width": 262,
+          "height": 240,
+          "uniqueColors": 139,
+          "nonTransparent": 332,
+          "nonSurface": 332
+        },
+        "ariaLabel": "Weight chart, 40 weigh-ins over the last 90 days",
+        "errors": []
+      }
+    },
+    {
+      "id": "2-phase-shading",
+      "name": "Creating an ongoing phase changes the chart image and updates the legend",
+      "ok": false,
+      "details": {
+        "beforeLen": 18010,
+        "afterLen": 18002,
+        "sameSize": false,
+        "diffPixels": 0,
+        "totalPixels": 62880,
+        "maxDelta": 1,
+        "ongoingChecked": true,
+        "legend": "No phases yet",
+        "errors": []
+      }
+    },
+    {
+      "id": "3-relative-dates",
+      "name": "Recent rows say Today / Yesterday / 2 days ago (never Tomorrow)",
+      "ok": true,
+      "details": {
+        "recent": [
+          "Today",
+          "Yesterday",
+          "2 days ago"
+        ],
+        "headlineDate": "Today",
+        "headline": "74.5",
+        "bodyHasTomorrow": false,
+        "entryWeights": [
+          "74.5 kg",
+          "75.1 kg",
+          "75.4 kg"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "4-stats-320",
+      "name": "Stat tiles: no overflow, equal heights, unit fully visible",
+      "ok": true,
+      "details": {
+        "viewport": {
+          "w": 320,
+          "h": 568
+        },
+        "count": 6,
+        "equalHeights": true,
+        "heights": [
+          188.58,
+          188.58,
+          188.58,
+          188.58,
+          188.58,
+          188.58
+        ],
+        "noOverflow": true,
+        "unitsOk": true,
+        "tiles": [
+          {
+            "label": "7-day avg",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 154,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 120.875,
+            "unitRight": 136.421875,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Total change",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 271,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 241.5625,
+            "unitRight": 257.109375,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Weekly rate",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 154,
+            "unitText": "kg/wk",
+            "unitScrollWidth": 39,
+            "unitClientWidth": 39,
+            "unitWidth": 39.265625,
+            "unitLeft": 62,
+            "unitRight": 101.265625,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Streak",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 271,
+            "unitText": "days",
+            "unitScrollWidth": 29,
+            "unitClientWidth": 29,
+            "unitWidth": 28.90625,
+            "unitLeft": 216.703125,
+            "unitRight": 245.609375,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "BMI",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 154,
+            "unitText": null,
+            "unitScrollWidth": null,
+            "unitClientWidth": null,
+            "unitWidth": null,
+            "unitLeft": null,
+            "unitRight": null,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Daily swing",
+            "scrollWidth": 103,
+            "clientWidth": 103,
+            "width": 105,
+            "height": 188.58,
+            "tileRight": 271,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 237.875,
+            "unitRight": 253.421875,
+            "unitClipped": false,
+            "unitInside": true
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "4-stats-360",
+      "name": "Stat tiles: no overflow, equal heights, unit fully visible",
+      "ok": true,
+      "details": {
+        "viewport": {
+          "w": 360,
+          "h": 740
+        },
+        "count": 6,
+        "equalHeights": true,
+        "heights": [
+          189.5,
+          189.5,
+          189.5,
+          189.5,
+          189.5,
+          189.5
+        ],
+        "noOverflow": true,
+        "unitsOk": true,
+        "tiles": [
+          {
+            "label": "7-day avg",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 174,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 122.328125,
+            "unitRight": 137.875,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Total change",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 311,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 263.125,
+            "unitRight": 278.671875,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Weekly rate",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 174,
+            "unitText": "kg/wk",
+            "unitScrollWidth": 39,
+            "unitClientWidth": 39,
+            "unitWidth": 39.265625,
+            "unitLeft": 62,
+            "unitRight": 101.265625,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Streak",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 311,
+            "unitText": "days",
+            "unitScrollWidth": 29,
+            "unitClientWidth": 29,
+            "unitWidth": 28.90625,
+            "unitLeft": 237.546875,
+            "unitRight": 266.453125,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "BMI",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 174,
+            "unitText": null,
+            "unitScrollWidth": null,
+            "unitClientWidth": null,
+            "unitWidth": null,
+            "unitLeft": null,
+            "unitRight": null,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Daily swing",
+            "scrollWidth": 123,
+            "clientWidth": 123,
+            "width": 125,
+            "height": 189.5,
+            "tileRight": 311,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 259.328125,
+            "unitRight": 274.875,
+            "unitClipped": false,
+            "unitInside": true
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "4-stats-390",
+      "name": "Stat tiles: no overflow, equal heights, unit fully visible",
+      "ok": true,
+      "details": {
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "count": 6,
+        "equalHeights": true,
+        "heights": [
+          179.27,
+          179.27,
+          179.27,
+          179.27,
+          179.27,
+          179.27
+        ],
+        "noOverflow": true,
+        "unitsOk": true,
+        "tiles": [
+          {
+            "label": "7-day avg",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 189,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 130.6875,
+            "unitRight": 146.234375,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Total change",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 341,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 286.796875,
+            "unitRight": 302.34375,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Weekly rate",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 189,
+            "unitText": "kg/wk",
+            "unitScrollWidth": 39,
+            "unitClientWidth": 39,
+            "unitWidth": 39.265625,
+            "unitLeft": 66,
+            "unitRight": 105.265625,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Streak",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 341,
+            "unitText": "days",
+            "unitScrollWidth": 29,
+            "unitClientWidth": 29,
+            "unitWidth": 28.90625,
+            "unitLeft": 259.09375,
+            "unitRight": 288,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "BMI",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 189,
+            "unitText": null,
+            "unitScrollWidth": null,
+            "unitClientWidth": null,
+            "unitWidth": null,
+            "unitLeft": null,
+            "unitRight": null,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Daily swing",
+            "scrollWidth": 138,
+            "clientWidth": 138,
+            "width": 140,
+            "height": 179.27,
+            "tileRight": 341,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 282.6875,
+            "unitRight": 298.234375,
+            "unitClipped": false,
+            "unitInside": true
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "4-stats-768",
+      "name": "Stat tiles: no overflow, equal heights, unit fully visible",
+      "ok": true,
+      "details": {
+        "viewport": {
+          "w": 768,
+          "h": 1024
+        },
+        "count": 6,
+        "equalHeights": true,
+        "heights": [
+          189.39,
+          189.39,
+          189.39,
+          189.39,
+          189.39,
+          189.39
+        ],
+        "noOverflow": true,
+        "unitsOk": true,
+        "tiles": [
+          {
+            "label": "7-day avg",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 378,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 298.671875,
+            "unitRight": 314.21875,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Total change",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 567,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 492.9375,
+            "unitRight": 508.484375,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Weekly rate",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 378,
+            "unitText": "kg/wk",
+            "unitScrollWidth": 39,
+            "unitClientWidth": 39,
+            "unitWidth": 39.265625,
+            "unitLeft": 218,
+            "unitRight": 257.265625,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Streak",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 567,
+            "unitText": "days",
+            "unitScrollWidth": 29,
+            "unitClientWidth": 29,
+            "unitWidth": 28.90625,
+            "unitLeft": 457.421875,
+            "unitRight": 486.328125,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "BMI",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 378,
+            "unitText": null,
+            "unitScrollWidth": null,
+            "unitClientWidth": null,
+            "unitWidth": null,
+            "unitLeft": null,
+            "unitRight": null,
+            "unitClipped": false,
+            "unitInside": true
+          },
+          {
+            "label": "Daily swing",
+            "scrollWidth": 175,
+            "clientWidth": 175,
+            "width": 177,
+            "height": 189.39,
+            "tileRight": 567,
+            "unitText": "kg",
+            "unitScrollWidth": 16,
+            "unitClientWidth": 16,
+            "unitWidth": 15.546875,
+            "unitLeft": 487.671875,
+            "unitRight": 503.21875,
+            "unitClipped": false,
+            "unitInside": true
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "5-tab-scroll-reset",
+      "name": "Switching to Settings resets window scroll to top and shows the h1",
+      "ok": true,
+      "details": {
+        "historyInfo": {
+          "rows": 40,
+          "scrollHeight": 3109
+        },
+        "beforeScroll": 2369,
+        "scrollY": 0,
+        "docScrollTop": 0,
+        "h1Text": "Settings",
+        "h1Top": 36,
+        "activeTab": "settings",
+        "errors": []
+      }
+    },
+    {
+      "id": "6-date-change-move",
+      "name": "Changing the date while editing moves the entry (2 entries, no duplicate)",
+      "ok": false,
+      "details": {
+        "beforeDate": "2026-10-27",
+        "labelAfterDate": "Mon 26 Oct",
+        "counts": {
+          "total": 1,
+          "today": 0,
+          "yesterday": 1
+        },
+        "yesterdayEntry": {
+          "date": "2026-10-26",
+          "weightKg": 74.5,
+          "createdAt": 1793062933107,
+          "updatedAt": 1793062963388
+        },
+        "entries": [
+          {
+            "date": "2026-10-26",
+            "weightKg": 74.5,
+            "createdAt": 1793062933107,
+            "updatedAt": 1793062963388
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "7-goal-consistency",
+      "name": "Goal card shows reached, not \"100%\" + \"+2.0 kg to go\"",
+      "ok": true,
+      "details": {
+        "pct": "100%",
+        "detail": "Goal reached · +2.0 kg past goal",
+        "ariaNow": "100",
+        "fillWidth": "100%",
+        "cardText": "Goal\n100%\nGoal reached · +2.0 kg past goal",
+        "errors": []
+      }
+    },
+    {
+      "id": "8a-blank-start",
+      "name": "Empty-state sheet shows an empty weight field (not \"0.0\")",
+      "ok": true,
+      "details": {
+        "value": "",
+        "placeholder": "0",
+        "displayedText": "<input class=\"big-number-value\" id=\"weight-input-1\" type=\"text\" inputmode=\"decimal\" pattern=\"[0-9]*[.,]?[0-9]*\" autocomplete=\"off\" aria-label=\"Weight in kg\" placeholder=\"0\">",
+        "errors": []
+      }
+    },
+    {
+      "id": "8b-typing-replaces",
+      "name": "Typing 74.5 into the field yields exactly \"74.5\" and stores 74.5",
+      "ok": true,
+      "details": {
+        "typed": "74.5",
+        "stored": [
+          {
+            "date": "2026-10-27",
+            "weightKg": 74.5,
+            "createdAt": 1793062970348,
+            "updatedAt": 1793062970348
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "8b2-typing-no-delay",
+      "name": "Typing immediately after focus still replaces (no leading 0)",
+      "ok": false,
+      "details": {
+        "value": "4.5",
+        "errors": []
+      }
+    },
+    {
+      "id": "8c-implausible-rejected",
+      "name": "Saving 0.07 and 0.5 is rejected with an error toast and no entry",
+      "ok": true,
+      "details": {
+        "rejection": {
+          "0.07": {
+            "toastVisible": true,
+            "toastText": "Enter a weight of at least 20 kg",
+            "toastTone": "error",
+            "sheetOpen": true,
+            "inputValue": "0.1"
+          },
+          "0.5": {
+            "toastVisible": true,
+            "toastText": "Enter a weight of at least 20 kg",
+            "toastTone": "error",
+            "sheetOpen": true,
+            "inputValue": "0.5"
+          }
+        },
+        "stored": [],
+        "errors": []
+      }
+    },
+    {
+      "id": "8d-typing-745",
+      "name": "Typing 745 and saving stores 74.5 (not 0.1 / not rejected)",
+      "ok": false,
+      "details": {
+        "afterSave": {
+          "toastVisible": true,
+          "toastText": "That looks too high — check the value (max 400 kg)",
+          "toastTone": "error",
+          "sheetOpen": true
+        },
+        "stored": [],
+        "errors": []
+      }
+    },
+    {
+      "id": "8e-prefill-typing",
+      "name": "Prefilled field typing 74.5 yields exactly 74.5",
+      "ok": true,
+      "details": {
+        "prefilled": "75.3",
+        "value": "74.5",
+        "errors": []
+      }
+    },
+    {
+      "id": "9-prefill-last",
+      "name": "New-date log sheet is prefilled with the most recent weight (75.3)",
+      "ok": true,
+      "details": {
+        "value": "75.3",
+        "dateValue": "2026-10-27",
+        "dateLabel": "Tue 27 Oct",
+        "title": "Log weight",
+        "errors": []
+      }
+    },
+    {
+      "id": "10-sheet-focus",
+      "name": "Focus enters the sheet, Escape closes and restores FAB focus, Tab wraps both ways",
+      "ok": true,
+      "details": {
+        "focusIn": {
+          "insidePanel": true,
+          "isFab": false,
+          "tag": "BUTTON",
+          "cls": "icon-button sheet-close",
+          "aria": "Close dialog"
+        },
+        "afterEsc": {
+          "sheetOpen": false,
+          "sheetPresent": false,
+          "activeIsFab": true,
+          "activeTag": "BUTTON",
+          "activeAria": "Log weight"
+        },
+        "trapSetup": {
+          "count": 8,
+          "first": {
+            "tag": "BUTTON",
+            "cls": "icon-button sheet-close",
+            "aria": "Close dialog"
+          },
+          "last": {
+            "tag": "BUTTON",
+            "cls": "button button--primary button--large",
+            "text": "Save"
+          },
+          "activeIsLast": true
+        },
+        "afterTab": {
+          "tag": "BUTTON",
+          "cls": "icon-button sheet-close",
+          "aria": "Close dialog"
+        },
+        "shiftSetup": {
+          "firstIsFirst": true
+        },
+        "firstFocused": true,
+        "afterShiftTab": {
+          "tag": "BUTTON",
+          "cls": "button button--primary button--large",
+          "text": "Save"
+        },
+        "trapWorks": true,
+        "errors": []
+      }
+    },
+    {
+      "id": "11-range-focus",
+      "name": "Focus stays on the segmented control and ArrowRight repeatedly changes range",
+      "ok": true,
+      "details": {
+        "initial": {
+          "active": "chart-window:90",
+          "cls": "segmented-option"
+        },
+        "afterOne": {
+          "activeKey": "chart-window:180",
+          "cls": "segmented-option",
+          "isBody": false,
+          "isSegmentedOption": true,
+          "ariaChecked": "true",
+          "windowDays": 180,
+          "canvas": {
+            "w": 262,
+            "h": 240
+          }
+        },
+        "afterTwo": {
+          "activeKey": "chart-window:365",
+          "isSegmentedOption": true,
+          "windowDays": 365,
+          "checked": [
+            "1y"
+          ],
+          "chartAria": "Weight chart, 40 weigh-ins over the last 365 days"
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "17-bmi-volatility",
+      "name": "BMI and Daily swing tiles appear when height is set",
+      "ok": false,
+      "details": {
+        "tiles": [
+          {
+            "label": "7-day avg",
+            "value": "74.8",
+            "unit": "kg",
+            "sublabel": "Smoothed trend",
+            "visible": true
+          },
+          {
+            "label": "Total change",
+            "value": "−7.8",
+            "unit": "kg",
+            "sublabel": "Since first entry",
+            "visible": true
+          },
+          {
+            "label": "Weekly rate",
+            "value": "−1.40",
+            "unit": "kg/wk",
+            "sublabel": "Overall pace",
+            "visible": true
+          },
+          {
+            "label": "Streak",
+            "value": "40",
+            "unit": "days",
+            "sublabel": "Best: 40",
+            "visible": true
+          },
+          {
+            "label": "BMI",
+            "value": "22.9",
+            "unit": null,
+            "sublabel": "Healthy range",
+            "visible": true
+          },
+          {
+            "label": "Daily swing",
+            "value": "0.20",
+            "unit": "kg",
+            "sublabel": "Average movement",
+            "visible": true
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "18-console-light",
+      "name": "No console errors or page errors in light mode",
+      "ok": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "id": "18-console-dark",
+      "name": "No console errors or page errors in dark mode",
+      "ok": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}
