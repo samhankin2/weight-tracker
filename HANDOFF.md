@@ -14,8 +14,8 @@ Chart.js is the only runtime dependency. All user data lives in `localStorage`.
 Static site deployed to GitHub Pages via GitHub Actions.
 
 **Current status:** deployed and working. Verified end-to-end against the live
-URL (12/12 automated checks passing). The user is now testing on a real phone
-and will report what feels wrong.
+URL (12/12 automated checks passing); the local smoke suite is at 14/14. The
+user is now testing on a real phone and will report what feels wrong.
 
 ---
 
@@ -62,9 +62,7 @@ Microsoft Edge via Puppeteer's `executablePath` — see `qa/verify-deployed.mjs`
 for the exact path. Puppeteer is a devDependency; it skips the Chromium
 download and uses the installed Edge.
 
-**Known stale assertions:** `qa/smoke.mjs` has two count expectations that were
-written before the manual-log step was added (it expects 3 entries where 4
-exist). The app behaves correctly — the test is wrong. Not yet fixed.
+`qa/smoke.mjs` makes 14 assertions and all 14 pass against the local build.
 
 ---
 
@@ -221,7 +219,7 @@ Calm, quiet instrument. Not a gamified tracker.
 
 ## Open items
 
-- [ ] Fix the two stale count assertions in `qa/smoke.mjs`.
+- [x] Fix the two stale count assertions in `qa/smoke.mjs` (done 2026-10-27).
 - [ ] Await user feedback from real-phone testing, then prioritise.
 - [ ] `qa/verify-import.mjs` and `qa/focus-probe.mjs` were ad-hoc debugging
       scripts — either promote them to a proper suite or delete them.

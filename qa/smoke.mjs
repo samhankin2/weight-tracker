@@ -144,9 +144,11 @@ const conflict = await page.evaluate(() => {
     mar5: raw.entries.filter((e) => e.date === '2026-03-05').map((e) => e.weightKg),
   }
 })
+// 3 imported + the one logged manually above; the overwrite replaces 5 Mar,
+// it does not add an entry.
 check(
   'pasted value overwrites, no duplicate',
-  conflict.count === 3 && conflict.mar5.length === 1 && conflict.mar5[0] === 76,
+  conflict.count === 4 && conflict.mar5.length === 1 && conflict.mar5[0] === 76,
   JSON.stringify(conflict),
 )
 
@@ -157,7 +159,7 @@ const afterReload = await page.evaluate(() => {
   const raw = JSON.parse(localStorage.getItem('weight-tracker:v1'))
   return raw.entries.length
 })
-check('data survives reload', afterReload === 3, `${afterReload} entries`)
+check('data survives reload', afterReload === 4, `${afterReload} entries`)
 
 check('no console errors', errors.length === 0, errors.slice(0, 3).join(' | '))
 
