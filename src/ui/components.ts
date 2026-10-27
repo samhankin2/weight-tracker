@@ -363,14 +363,20 @@ export function SegmentedControl({ options, value, onChange, ariaLabel, focusKey
 }
 
 export interface BigNumberInputProps {
-  valueKg: number
-  onChange: (valueKg: number) => void
+  value: number
+  onChange: (value: number) => void
   step?: number
   unit: string
-  onSubmit?: (valueKg: number) => void
+  onSubmit?: (value: number) => void
   bigStepButtons?: boolean
   /** Lowest plausible value. Used as the starting point for the steppers. */
   minValue?: number
+  /** Highest value the steppers will step to. Typed input is never clamped. */
+  maxValue?: number
+  /** Accessible name for the field. Defaults to `Value in ${unit}`. */
+  ariaLabel?: string
+  /** Optional visible label rendered above the field. */
+  label?: string
   /** Select the entire value when the field gains focus (default true). */
   selectOnFocus?: boolean
   /** Receive focus as soon as the surrounding sheet opens. */
@@ -379,20 +385,27 @@ export interface BigNumberInputProps {
 
 /** A thumb-friendly decimal input with repeat-on-hold steppers. */
 export function BigNumberInput({
-  valueKg,
+  value,
   onChange,
   step = 0.1,
   unit,
   onSubmit,
   bigStepButtons = true,
   minValue = 0,
+  maxValue,
+  ariaLabel,
+  label,
   selectOnFocus = true,
   autoFocus = false,
 }: BigNumberInputProps): HTMLElement {
   const safeStep = Number.isFinite(step) && step > 0 ? step : 0.1
   const precision = Math.max(1, (String(safeStep).split('.')[1] ?? '').length)
   const floor = Number.isFinite(minValue) && minValue > 0 ? minValue : 0
-  let current = Number.isFinite(valueKg) ? Math.max(0, valueKg) : 0
+  // The ceiling limits stepper presses only. Typed input is validated by the
+  // caller, exactly as with minValue.
+  const ceiling =
+    typeof maxValue === 'number' && Number.isFinite(maxValue) && maxValue > 0 ? maxValue : null
+  let current = Number.isFinite(value) ? Math.max(0, value) : 0
   /** True while the field is empty, so the placeholder shows instead of "0.0". */
   let isBlank = current <= 0
   const inputId = `weight-input-${++nextSheetId}`
@@ -403,7 +416,7 @@ export function BigNumberInput({
     inputmode: 'decimal',
     pattern: '[0-9]*[.,]?[0-9]*',
     autocomplete: 'off',
-    'aria-label': `Weight in ${unit}`,
+    'aria-label': ariaLabel ?? `Value in ${unit}`,
     placeholder: '0',
     value: isBlank ? '' : current.toFixed(precision),
     ...(autoFocus ? { 'data-autofocus': 'true' } : {}),
@@ -429,7 +442,8 @@ export function BigNumberInput({
   const adjust = (direction: number): void => {
     // Stepping from a blank field starts at the plausible floor, not zero.
     const base = isBlank || current <= 0 ? floor : current
-    setValue(base + direction * safeStep)
+    const next = base + direction * safeStep
+    setValue(ceiling !== null && next > ceiling ? ceiling : next)
   }
 
   function makeStepButton(direction: number): HTMLButtonElement {
@@ -505,7 +519,14 @@ export function BigNumberInput({
     onSubmit?.(current)
   })
 
+  const labelElement = label
+    ? el('label', { class: 'field-label', for: inputId }, [
+        el('span', { class: 'field-label-text' }, label),
+      ])
+    : null
+
   return el('div', { class: clsx('big-number-input', !bigStepButtons && 'big-number-input--compact') }, [
+    labelElement,
     el('div', { class: 'big-number-display' }, [
       input,
       el('span', { class: 'big-number-unit', 'aria-hidden': 'true' }, unit),

@@ -102,10 +102,11 @@ export function openLogWeightSheet(opts: LogWeightOptions): { close: () => void 
   ])
 
   const weightInput = BigNumberInput({
-    valueKg: weightKg,
+    value: weightKg,
     unit: 'kg',
     step: 0.1,
     minValue: MIN_PLAUSIBLE_KG,
+    ariaLabel: 'Weight in kg',
     autoFocus: true,
     onChange: (v) => {
       weightKg = v

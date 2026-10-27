@@ -1,5 +1,5 @@
 /**
- * localStorage persistence layer.
+ * localStorage persistence layer for the weight tracker.
  * All app state lives under a single versioned key.
  */
 
@@ -12,6 +12,7 @@ import {
   type Profile,
   type WeightEntry,
 } from './types'
+import { createStorage } from './state/storage'
 
 export function emptyState(): AppState {
   return {
@@ -22,34 +23,14 @@ export function emptyState(): AppState {
   }
 }
 
-/** Read state from localStorage, migrating or repairing as needed. */
-export function loadState(): AppState {
-  let raw: string | null = null
-  try {
-    raw = localStorage.getItem(STORAGE_KEY)
-  } catch {
-    // localStorage unavailable (private mode / disabled) — run in-memory.
-    return emptyState()
-  }
-  if (!raw) return emptyState()
-
-  let parsed: unknown
-  try {
-    parsed = JSON.parse(raw)
-  } catch {
-    return emptyState()
-  }
-  if (!parsed || typeof parsed !== 'object') return emptyState()
-
-  return migrate(parsed as Partial<AppState>)
-}
-
-/** Coerce a parsed object into a valid AppState. */
-function migrate(input: Partial<AppState>): AppState {
+/** Coerce a parsed object into a valid AppState, dropping invalid records. */
+function migrate(input: unknown): AppState {
   const state = emptyState()
+  if (!input || typeof input !== 'object') return state
+  const source = input as Partial<AppState>
 
-  if (Array.isArray(input.entries)) {
-    state.entries = input.entries
+  if (Array.isArray(source.entries)) {
+    state.entries = source.entries
       .filter((e): e is WeightEntry => {
         if (!e || typeof e !== 'object') return false
         const w = e as Partial<WeightEntry>
@@ -70,8 +51,8 @@ function migrate(input: Partial<AppState>): AppState {
       }))
   }
 
-  if (Array.isArray(input.phases)) {
-    state.phases = input.phases
+  if (Array.isArray(source.phases)) {
+    state.phases = source.phases
       .filter((p): p is Phase => {
         if (!p || typeof p !== 'object') return false
         const ph = p as Partial<Phase>
@@ -93,8 +74,8 @@ function migrate(input: Partial<AppState>): AppState {
       }))
   }
 
-  if (input.profile && typeof input.profile === 'object') {
-    const p = input.profile as Partial<Profile>
+  if (source.profile && typeof source.profile === 'object') {
+    const p = source.profile as Partial<Profile>
     state.profile = {
       startWeightKg:
         typeof p.startWeightKg === 'number' && Number.isFinite(p.startWeightKg)
@@ -120,14 +101,21 @@ function migrate(input: Partial<AppState>): AppState {
   return state
 }
 
+const storage = createStorage<AppState>({
+  key: STORAGE_KEY,
+  version: SCHEMA_VERSION,
+  empty: emptyState,
+  normalise: migrate,
+})
+
+/** Read state from localStorage, migrating or repairing as needed. */
+export function loadState(): AppState {
+  return storage.load()
+}
+
 /** Persist state to localStorage. Returns false if storage is unavailable. */
 export function saveState(state: AppState): boolean {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    return true
-  } catch {
-    return false
-  }
+  return storage.save(state)
 }
 
 /** Export state as a pretty-printed JSON string for backup. */
@@ -135,12 +123,20 @@ export function exportState(state: AppState): string {
   return JSON.stringify(state, null, 2)
 }
 
-/** Parse a backup file. Returns null on failure. */
+/**
+ * Parse a backup file. Returns null on failure.
+ *
+ * A backup must look like a weight state — it has to carry an `entries` array.
+ * Without that check a training backup (a different module, different shapes)
+ * would be silently "repaired" into an empty weight state and overwrite the
+ * user's data.
+ */
 export function importState(text: string): AppState | null {
   try {
-    const parsed = JSON.parse(text)
-    if (!parsed || typeof parsed !== 'object') return null
-    return migrate(parsed as Partial<AppState>)
+    const parsed: unknown = JSON.parse(text)
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null
+    if (!Array.isArray((parsed as Partial<AppState>).entries)) return null
+    return migrate(parsed)
   } catch {
     return null
   }
