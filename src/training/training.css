@@ -1,0 +1,244 @@
+/* Training page. Everything domain-neutral is reused from ui.css/app.css. */
+
+.training-shell {
+  display: flex;
+  width: min(100%, var(--content-max));
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding: var(--space-5) var(--space-4)
+    calc(var(--space-10) + env(safe-area-inset-bottom, 0px));
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.training-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.training-title {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+}
+
+/* The heading is focused programmatically after some actions; do not draw a
+   ring for a non-keyboard focus, but keep the keyboard ring intact. */
+.training-title:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.training-nav,
+.training-notices {
+  min-width: 0;
+}
+
+.training-view-host {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.training-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.training-counts {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+.training-note {
+  margin: 0;
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.training-simple-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+/* ---- Recovery notices ----------------------------------------------------- */
+
+.training-notices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.training-notices:empty {
+  display: none;
+}
+
+.notice {
+  display: flex;
+  padding: var(--space-4);
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.notice-text {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+
+.notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---- Exercise library ----------------------------------------------------- */
+
+.library-toolbar {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.library-search {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.library-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.library-count {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+.library-results {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.library-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  list-style: none;
+}
+
+.library-row-item + .library-row-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.library-row {
+  display: flex;
+  width: 100%;
+  min-height: 4rem;
+  padding: var(--space-3) var(--space-4);
+  align-items: center;
+  gap: var(--space-3);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.library-row:hover {
+  background: var(--color-surface-sunken);
+}
+
+.library-row-main {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.library-row-name {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+}
+
+.library-row-meta {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+.library-row-chevron {
+  color: var(--color-text-subtle);
+}
+
+.library-archived-toggle {
+  align-self: flex-start;
+}
+
+/* ---- Exercise sheet ------------------------------------------------------- */
+
+.exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.field-hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.exercise-form__secondary {
+  width: 100%;
+}
+
+/* ---- Wider screens -------------------------------------------------------- */
+
+@media (min-width: 43.75rem) {
+  .training-shell {
+    padding-inline: var(--space-6);
+  }
+}

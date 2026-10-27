@@ -20,6 +20,15 @@ export interface StorageConfig<T extends VersionedState> {
   empty: () => T
   /** Coerce a parsed object into a valid state, dropping invalid records. */
   normalise: (raw: unknown) => T
+  /**
+   * Called when data *was* stored but could not be read: invalid JSON, or a
+   * value that is not a plain object. Lets a module surface a recovery
+   * message instead of silently discarding what the user had.
+   *
+   * Never called when nothing was stored, or when storage is unavailable —
+   * those are not corruption.
+   */
+  onCorrupt?: () => void
 }
 
 export interface StorageAdapter<T> {
@@ -39,6 +48,7 @@ export function createStorage<T extends VersionedState>({
   version,
   empty,
   normalise,
+  onCorrupt,
 }: StorageConfig<T>): StorageAdapter<T> {
   return {
     load(): T {
@@ -55,9 +65,13 @@ export function createStorage<T extends VersionedState>({
       try {
         parsed = JSON.parse(raw)
       } catch {
+        onCorrupt?.()
         return empty()
       }
-      if (!isRecord(parsed)) return empty()
+      if (!isRecord(parsed)) {
+        onCorrupt?.()
+        return empty()
+      }
 
       const state = normalise(parsed)
       state.version = version

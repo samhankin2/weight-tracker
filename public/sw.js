@@ -6,10 +6,11 @@
  * Vite gives bundled assets content-hashed filenames, so this file cannot
  * hardcode them and there is no build manifest to read at runtime. Instead:
  *
- *   1. The app shell is precached by name (it is stable across builds).
- *   2. At install time the freshly precached index.html is scanned for its
- *      <script src> / <link href> asset URLs and those are precached too.
- *      This is what makes a *cold* offline reload work after a single visit,
+ *   1. The app shells are precached by name (they are stable across builds).
+ *   2. At install time the freshly precached HTML documents (the weight shell
+ *      and the training page) are scanned for their <script src> / <link href>
+ *      asset URLs and those are precached too. This is what makes a *cold*
+ *      offline reload work after a single visit, on either entry point,
  *      without needing to know the hashes ahead of time.
  *   3. Anything else same-origin is cached on demand (stale-while-revalidate).
  *
@@ -33,6 +34,7 @@ const CACHE_NAME = `weight-tracker-shell-${CACHE_VERSION}`
 const SHELL_ASSETS = [
   './',
   './index.html',
+  './training.html',
   './manifest.webmanifest',
   './favicon.svg',
   './icon-192.png',
@@ -48,6 +50,7 @@ function appUrl(path) {
 }
 
 const SHELL_URL = () => appUrl('./index.html')
+const TRAINING_URL = () => appUrl('./training.html')
 const SCOPE_URL = () => self.registration.scope
 
 function isSameOrigin(url) {
@@ -58,6 +61,22 @@ function isSameOrigin(url) {
 function isShellDocument(url) {
   const root = new URL(SCOPE_URL())
   return url.pathname === root.pathname || url.pathname === `${root.pathname}index.html`
+}
+
+/** True for the training page. */
+function isTrainingDocument(url) {
+  const root = new URL(SCOPE_URL())
+  return url.pathname === `${root.pathname}training.html`
+}
+
+/**
+ * The cached document that should answer this navigation, or null for an
+ * arbitrary in-scope path (which is redirected to the app root).
+ */
+function documentUrlFor(url) {
+  if (isTrainingDocument(url)) return TRAINING_URL()
+  if (isShellDocument(url)) return SHELL_URL()
+  return null
 }
 
 // ---------------------------------------------------------------------------
@@ -84,35 +103,43 @@ self.addEventListener('install', (event) => {
 })
 
 /**
- * Parse the cached index.html for same-origin script/link targets and cache
- * them. Best effort: any failure just means those assets will be cached on
- * first use instead.
+ * Parse each cached document (the weight shell and the training page) for its
+ * same-origin script/link targets and cache them. Best effort: any failure just
+ * means those assets will be cached on first use instead.
  */
 async function precacheShellAssets(cache) {
-  try {
-    const shellResponse = await cache.match(SHELL_URL())
-    if (!shellResponse) return
+  const targets = new Set()
 
-    const html = await shellResponse.text()
-    const pattern = /<(?:script|link)\b[^>]*?\b(?:src|href)\s*=\s*"([^"]+)"/gi
-    const shellUrl = SHELL_URL()
-    const targets = new Set()
+  for (const documentUrl of [SHELL_URL(), TRAINING_URL()]) {
+    try {
+      const shellResponse = await cache.match(documentUrl)
+      if (!shellResponse) continue
 
-    for (const match of html.matchAll(pattern)) {
-      const raw = match[1]
-      if (!raw || raw.startsWith('data:') || raw.startsWith('mailto:') || raw.startsWith('#')) continue
-      let url
-      try {
-        url = new URL(raw, shellUrl)
-      } catch {
-        continue
+      const html = await shellResponse.text()
+      const pattern = /<(?:script|link)\b[^>]*?\b(?:src|href)\s*=\s*"([^"]+)"/gi
+
+      for (const match of html.matchAll(pattern)) {
+        const raw = match[1]
+        if (!raw || raw.startsWith('data:') || raw.startsWith('mailto:') || raw.startsWith('#')) continue
+        let url
+        try {
+          // Resolve against the document that referenced it, so a second
+          // entry point's hashed assets are precached too.
+          url = new URL(raw, documentUrl)
+        } catch {
+          continue
+        }
+        if (!isSameOrigin(url)) continue
+        // The manifest is already precached; skip the SW itself.
+        if (url.pathname.endsWith('/sw.js')) continue
+        targets.add(url.href)
       }
-      if (!isSameOrigin(url)) continue
-      // The manifest is already precached; skip the SW itself.
-      if (url.pathname.endsWith('/sw.js')) continue
-      targets.add(url.href)
+    } catch {
+      // Non-fatal per document.
     }
+  }
 
+  try {
     await Promise.allSettled(
       [...targets].map((href) => cache.add(new Request(href, { cache: 'reload' }))),
     )
@@ -169,37 +196,42 @@ self.addEventListener('fetch', (event) => {
 
 /**
  * Network-first for navigations so a deploy is picked up immediately, with the
- * cached shell as the offline fallback (so a cold offline reload still boots).
+ * matching cached document as the offline fallback (so a cold offline reload
+ * still boots, on either entry point).
  */
 async function networkFirstNavigation(request, event, url) {
   try {
     const response = await fetch(request)
     if (response && response.ok && response.type === 'basic') {
-      // Keep the precached shell document fresh across deploys.
-      if (isShellDocument(url)) {
+      // Keep the precached documents fresh across deploys.
+      const documentUrl = documentUrlFor(url)
+      if (documentUrl) {
         const copy = response.clone()
         event.waitUntil(
           caches
             .open(CACHE_NAME)
-            .then((cache) => cache.put(SHELL_URL(), copy))
+            .then((cache) => cache.put(documentUrl, copy))
             .catch(() => {}),
         )
       }
     }
     return response
   } catch {
+    const documentUrl = documentUrlFor(url)
+    if (documentUrl) {
+      const cached = await caches.match(documentUrl, { ignoreSearch: true })
+      if (cached) return cached
+      return offlineFallback()
+    }
+
+    // An arbitrary in-scope path: the shell's asset URLs are relative, so
+    // serving it at that path would resolve them against the wrong base. Send
+    // the browser to the app root, where the cached shell is served correctly.
     const cached =
       (await caches.match(SHELL_URL(), { ignoreSearch: true })) ??
       (await caches.match(SCOPE_URL(), { ignoreSearch: true }))
 
-    if (cached) {
-      // The shell's asset URLs are relative, so serving it at an arbitrary
-      // in-scope path would resolve them against the wrong base and the app
-      // would never boot. Send the browser to the app root instead, where the
-      // cached shell is served correctly.
-      if (!isShellDocument(url)) return Response.redirect(SCOPE_URL(), 302)
-      return cached
-    }
+    if (cached) return Response.redirect(SCOPE_URL(), 302)
 
     return offlineFallback()
   }
