@@ -5,8 +5,12 @@ A simple, private weight tracker that works offline. Mobile-first.
 - **Log a weight in a couple of taps.** Big number, big steppers, prefilled from your last weigh-in.
 - **A 7-day average** so daily noise doesn't fool you.
 - **Training phases** (Bulk, Cut, Maintenance) shade the chart so noisy stretches are obvious.
+- **Import a list** — paste the weigh-ins you have been keeping in your notes.
 - **All data stays on your device** — `localStorage`, no account, no server, no tracking.
 - **Works offline** and installs to your home screen.
+
+> Working on this codebase? See **[HANDOFF.md](./HANDOFF.md)** for architecture,
+> gotchas, and deployment notes.
 
 ---
 
