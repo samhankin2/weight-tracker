@@ -313,8 +313,22 @@ Still open:
       export grow a second section? (The weight importer currently *repairs*
       unknown payloads into an empty weight state, so training JSON needs a
       guard either way.)
-- [ ] Seed exercise list contents and their muscle tags — worth doing against
-      a real rack photo rather than from memory, so the categories match the
-      exercises you actually own.
+- [ ] Seed exercise list contents — worth doing against a real rack photo
+      rather than from memory, so the body areas match the exercises you
+      actually own.
+- [ ] **Phase 4 needs age and sex for BMR, and the profile has neither.**
+      The weight tracker stores Starting weight, Goal weight and Height only.
+      Mifflin-St Jeor needs age and sex; without them phase 4 has to fall
+      back to a rougher formula and say so. Decide whether to add profile
+      fields now (a small change to the weight app's Settings) or accept a
+      cruder model in phase 4.
 - [ ] Whether bodyweight and assisted exercises need a `bodyweightKg` factor
       to make e1RM meaningful, or whether suppression is acceptable.
+
+Resolved during implementation:
+
+- [x] **Category vocabulary.** The exercise sheet now asks for a single
+      **body area** (Chest / Back / Legs / Shoulders / Arms / Core / Other);
+      `muscles` and the internal `category` are derived from it. The chips,
+      the row labels and the future volume stats now share one source of
+      truth.

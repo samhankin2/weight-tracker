@@ -8,13 +8,14 @@
  */
 
 import {
-  CATEGORY_OPTIONS,
+  BODY_AREA_OPTIONS,
   EQUIPMENT_OPTIONS,
   LOAD_MODE_OPTIONS,
   PROGRESSION_OPTIONS,
+  bodyAreaForMuscles,
+  type BodyArea,
   type Equipment,
   type Exercise,
-  type ExerciseCategory,
   type LoadMode,
   type ProgressionKind,
   type ProgressionRule,
@@ -75,12 +76,12 @@ export function openExerciseSheet(options: ExerciseSheetOptions): void {
   errors.push({ field: nameInput, error: nameError })
   nameInput.addEventListener('input', () => clearError(nameInput, nameError))
 
-  // ---- Category -----------------------------------------------------------
+  // ---- Body area ----------------------------------------------------------
 
-  const categorySelect = createSelect(
-    fieldId('category'),
-    CATEGORY_OPTIONS,
-    exercise?.category ?? 'other',
+  const bodyAreaSelect = createSelect(
+    fieldId('body-area'),
+    BODY_AREA_OPTIONS,
+    exercise ? bodyAreaForMuscles(exercise.muscles) : 'other',
   )
 
   // ---- Equipment ----------------------------------------------------------
@@ -225,7 +226,7 @@ export function openExerciseSheet(options: ExerciseSheetOptions): void {
 
   const content = el('div', { class: 'exercise-form' }, [
     fieldBlock('Exercise name', nameId, nameInput, nameError),
-    fieldBlock('Category', categorySelect.id, categorySelect, null),
+    fieldBlock('Body area', bodyAreaSelect.id, bodyAreaSelect, null),
     fieldBlock('Equipment', equipmentSelect.id, equipmentSelect, null),
     fieldBlock('Load entry', loadModeSelect.id, loadModeSelect, loadModeLockedHint),
     fieldBlock('Default load step', loadStepId, loadStepRow, loadStepError),
@@ -350,7 +351,7 @@ export function openExerciseSheet(options: ExerciseSheetOptions): void {
     const equipment = equipmentSelect.value as Equipment | ''
     options.onSave({
       name,
-      category: categorySelect.value as ExerciseCategory,
+      bodyArea: bodyAreaSelect.value as BodyArea,
       ...(equipment ? { equipment } : {}),
       loadMode: loadModeSelect.value as LoadMode,
       loadStepKg: loadStep,

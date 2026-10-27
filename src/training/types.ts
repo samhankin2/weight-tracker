@@ -16,6 +16,13 @@ export type LoadMode = 'total' | 'per-dumbbell' | 'added' | 'bodyweight' | 'assi
 /** Movement pattern. The library's body-area filters read `muscles` instead. */
 export type ExerciseCategory = 'push' | 'pull' | 'legs' | 'core' | 'cardio' | 'mobility' | 'other'
 
+/**
+ * The body area the user picks in the exercise sheet. It is what the library's
+ * chips are labelled with, and it derives both `muscles` (what the chips
+ * filter on) and `category` (the internal coarse grouping).
+ */
+export type BodyArea = 'chest' | 'back' | 'legs' | 'shoulders' | 'arms' | 'core' | 'other'
+
 export type Equipment = 'barbell' | 'dumbbell' | 'machine' | 'cable' | 'bodyweight' | 'band' | 'other'
 
 export type ProgressionKind = 'reps-then-load' | 'reps-only' | 'manual'
@@ -194,6 +201,61 @@ export const MUSCLES_BY_CATEGORY: Record<ExerciseCategory, readonly string[]> = 
   cardio: [],
   mobility: [],
   other: [],
+}
+
+/**
+ * Body areas offered by the exercise sheet. The library's chips use the same
+ * labels, minus `other` (which is the no-match case there).
+ */
+export const BODY_AREA_OPTIONS: readonly { value: BodyArea; label: string }[] = [
+  { value: 'chest', label: 'Chest' },
+  { value: 'back', label: 'Back' },
+  { value: 'legs', label: 'Legs' },
+  { value: 'shoulders', label: 'Shoulders' },
+  { value: 'arms', label: 'Arms' },
+  { value: 'core', label: 'Core' },
+  { value: 'other', label: 'Other' },
+]
+
+/**
+ * Single source of truth for what a body area means: the muscle tags the
+ * library filters on, and the internal movement grouping we store alongside
+ * them. The chip filters in `library.ts` read their muscle lists from here.
+ */
+export const BODY_AREA_MAP: Record<
+  BodyArea,
+  { muscles: readonly string[]; category: ExerciseCategory }
+> = {
+  chest: { muscles: ['chest'], category: 'push' },
+  back: { muscles: ['back'], category: 'pull' },
+  legs: { muscles: ['legs'], category: 'legs' },
+  shoulders: { muscles: ['shoulders'], category: 'push' },
+  arms: { muscles: ['biceps', 'triceps'], category: 'pull' },
+  core: { muscles: ['core'], category: 'core' },
+  other: { muscles: [], category: 'other' },
+}
+
+export function musclesForBodyArea(area: BodyArea): string[] {
+  return [...BODY_AREA_MAP[area].muscles]
+}
+
+export function categoryForBodyArea(area: BodyArea): ExerciseCategory {
+  return BODY_AREA_MAP[area].category
+}
+
+/**
+ * Body area implied by stored muscle tags. Used to prefill the sheet when
+ * editing, and to label payloads saved before the body-area field existed.
+ * Scans `BODY_AREA_OPTIONS` in display order, so a legacy Push exercise keeps
+ * reading as Chest rather than Arms.
+ */
+export function bodyAreaForMuscles(muscles: readonly string[]): BodyArea {
+  const match = BODY_AREA_OPTIONS.find(
+    (option) =>
+      option.value !== 'other' &&
+      BODY_AREA_MAP[option.value].muscles.some((muscle) => muscles.includes(muscle)),
+  )
+  return match?.value ?? 'other'
 }
 
 export function categoryLabel(value: ExerciseCategory): string {

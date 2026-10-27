@@ -18,14 +18,18 @@ type LoadMode =
   | 'bodyweight'     // no load
   | 'assistance'     // assisted; lower is harder
 
+type BodyArea = 'chest' | 'back' | 'legs' | 'shoulders' | 'arms' | 'core' | 'other'
+
 interface Exercise {
   id: ExerciseId
   name: string                  // "Bench press"
+  bodyArea: BodyArea            // user-facing; the library's chips filter on this
   category: 'push' | 'pull' | 'legs' | 'core' | 'cardio' | 'mobility' | 'other'
   equipment?: 'barbell' | 'dumbbell' | 'machine' | 'cable' | 'bodyweight' | 'band' | 'other'
-  muscles: string[]             // ['chest', 'triceps'] — drives weekly volume stats
+  muscles: string[]             // derived from bodyArea; drives weekly volume stats
   loadMode: LoadMode            // locked once sets have been logged
   loadStepKg: number            // default increment, normally 2.5
+  restSec: number               // default rest after a working set
   progression: ProgressionRule  // how load advances for this lift
   archived?: boolean            // hidden from pickers, history retained
   createdAt: string             // YYYY-MM-DD
@@ -120,6 +124,27 @@ countdown is recomputed from `Date.now()` on each tick. The tick must update
 **only the timer's text node** — committing it to the store would re-render the
 entire app once a second. The same applies to the elapsed-workout clock.
 
+### Body area, muscles and category
+
+The exercise sheet asks for one thing: the **body area**. Everything else is
+derived, so the library's chips, the row labels and the volume stats can never
+drift apart.
+
+| Body area | `muscles` | `category` |
+| --- | --- | --- |
+| chest | `['chest']` | push |
+| back | `['back']` | pull |
+| legs | `['legs']` | legs |
+| shoulders | `['shoulders']` | push |
+| arms | `['biceps', 'triceps']` | pull |
+| core | `['core']` | core |
+| other | `[]` | other |
+
+`category` is the coarse internal grouping only — it is never shown to the
+user, and it keeps `cardio` / `mobility` available for later work. The library
+row label is derived from `muscles` using the same table the chips filter on,
+so an Arms exercise reads **Arms**, never **Biceps**.
+
 ### Load mode and record eligibility
 
 `loadMode` is chosen at exercise creation and **locked once any set has been
@@ -200,7 +225,9 @@ none by default.
 These live in a later module but the training data must support them now.
 
 - **BMR** — Mifflin-St Jeor: `10*kg + 6.25*cm - 5*age + (5 male | -161 female)`.
-  Requires height, age and sex in the profile the weight tracker already keeps.
+  The weight app's profile currently stores Starting weight, Goal weight and
+  Height — **no age and no sex** — so this needs new profile fields before
+  phase 4, or a cruder fallback that states its method on screen.
 - **Exercise expenditure** — per-session expenditure estimated from tonnage:
   a rough `kcal ≈ tonnage_kg * 0.5` is too crude to trust; instead use
   MET-hours per session category, scaled by body mass, and expose it as an
@@ -248,11 +275,16 @@ These live in a later module but the training data must support them now.
 
 ## 6. Open items in this spec
 
-- [ ] Confirm which profile fields the weight tracker already stores (height,
-      age, sex, sex-at-birth vs biological sex) — determines whether BMR can be
-      computed without new input.
-- [ ] Decide the exercise -> muscle mapping: curated seed list for common
-      exercises, plus user-editable tags on custom exercises.
+- [x] Confirm which profile fields the weight tracker already stores (height,
+      age, sex) — the weight app's Settings has Starting weight, Goal weight
+      and Height only. **No age or sex field exists**, so Mifflin-St Jeor BMR
+      needs either a new profile field or a different (and more approximate)
+      approach in phase 4. This is a phase 4 blocker, not a phase 2 one.
+- [x] Decide the exercise → muscle mapping — a single user-facing **body
+      area** per exercise, with muscles and category derived from it (see
+      above). No separate curated muscle map is needed for filtering; only
+      phase 4's volume stats depend on how precise the tagging has to be.
 - [ ] Rest timer behaviour with the screen off (wake lock vs background timer).
+      Deferred to phase 2.1.
 - [ ] Whether warmup sets are logged as real sets (affects volume stats — they
       should be excluded from working-volume totals).

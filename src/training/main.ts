@@ -312,22 +312,30 @@ function renderToday(
   if (exerciseCount > 0) counts.push(plural(exerciseCount, 'exercise'))
   if (routineCount > 0) counts.push(plural(routineCount, 'routine'))
 
-  const empty = EmptyState({
-    icon: 'activity',
-    title: 'No routines yet',
-    message: 'Create a routine or start an empty workout.',
-    actionLabel: exerciseCount > 0 ? 'Open exercises' : 'Add your first exercise',
-    onAction: cb.onOpenExercises,
-  })
-  empty
-    .querySelector<HTMLElement>('.button')
-    ?.setAttribute('data-focus-key', 'today-add-exercise')
+  // With no exercises there is nothing to train with, so point at the one
+  // action that exists. Once exercises exist, say plainly that routines and
+  // logging are not part of this build — and offer no button for them.
+  const body =
+    exerciseCount === 0
+      ? EmptyState({
+          icon: 'activity',
+          title: 'No exercises yet',
+          message: 'Add the exercises you train to get started.',
+          actionLabel: 'Add your first exercise',
+          onAction: cb.onOpenExercises,
+        })
+      : EmptyState({
+          icon: 'flag',
+          title: 'No routines yet',
+          message: 'Routines and workout logging arrive in a later build.',
+        })
+  body.querySelector<HTMLElement>('.button')?.setAttribute('data-focus-key', 'today-add-exercise')
 
   return el('div', { class: 'view training-view' }, [
     counts.length > 0
       ? el('p', { class: 'training-counts' }, counts.join(' · '))
       : null,
-    empty,
+    body,
   ])
 }
 

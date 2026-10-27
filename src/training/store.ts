@@ -21,6 +21,9 @@ import {
   PROGRESSION_OPTIONS,
   TRAINING_SCHEMA_VERSION,
   TRAINING_STORAGE_KEY,
+  categoryForBodyArea,
+  musclesForBodyArea,
+  type BodyArea,
   type Equipment,
   type Exercise,
   type ExerciseCategory,
@@ -318,7 +321,7 @@ const persistent = createPersistentStore<TrainingState>({
 
 export interface ExerciseInput {
   name: string
-  category: ExerciseCategory
+  bodyArea: BodyArea
   equipment?: Equipment
   loadMode: LoadMode
   loadStepKg: number
@@ -332,10 +335,6 @@ function cleanName(name: string): string {
 
 function newExerciseId(): string {
   return `exercise_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
-}
-
-function musclesFor(category: ExerciseCategory): string[] {
-  return [...MUSCLES_BY_CATEGORY[category]]
 }
 
 function readRawPayload(): string | null {
@@ -384,9 +383,9 @@ export const trainingStore = {
     const exercise: Exercise = {
       id: newExerciseId(),
       name: cleanName(input.name),
-      category: input.category,
+      category: categoryForBodyArea(input.bodyArea),
       ...(input.equipment ? { equipment: input.equipment } : {}),
-      muscles: musclesFor(input.category),
+      muscles: musclesForBodyArea(input.bodyArea),
       loadMode: input.loadMode,
       loadStepKg: input.loadStepKg,
       ...(typeof input.restSec === 'number' ? { restSec: input.restSec } : {}),
@@ -406,9 +405,9 @@ export const trainingStore = {
           ? {
               ...exercise,
               name: cleanName(input.name),
-              category: input.category,
+              category: categoryForBodyArea(input.bodyArea),
               equipment: input.equipment,
-              muscles: musclesFor(input.category),
+              muscles: musclesForBodyArea(input.bodyArea),
               loadMode: input.loadMode,
               loadStepKg: input.loadStepKg,
               restSec: input.restSec,

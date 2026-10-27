@@ -8,7 +8,7 @@
  */
 
 import type { TrainingState, Exercise } from './types'
-import { categoryLabel, equipmentLabel } from './types'
+import { BODY_AREA_MAP, equipmentLabel } from './types'
 import { Badge, Chip, EmptyState } from '../ui/components'
 import { el, Icon } from '../ui/dom'
 
@@ -39,21 +39,29 @@ interface AreaFilter {
   muscles: readonly string[] | null
 }
 
+/**
+ * One table for both the chips and the row label. Muscle lists come from
+ * `BODY_AREA_MAP`, so the label a row shows can never name an area the chips
+ * do not filter on.
+ */
 const AREA_FILTERS: readonly AreaFilter[] = [
   { id: 'all', label: 'All', muscles: null },
-  { id: 'chest', label: 'Chest', muscles: ['chest'] },
-  { id: 'back', label: 'Back', muscles: ['back'] },
-  { id: 'legs', label: 'Legs', muscles: ['legs'] },
-  { id: 'shoulders', label: 'Shoulders', muscles: ['shoulders'] },
-  { id: 'arms', label: 'Arms', muscles: ['biceps', 'triceps'] },
-  { id: 'core', label: 'Core', muscles: ['core'] },
+  { id: 'chest', label: 'Chest', muscles: BODY_AREA_MAP.chest.muscles },
+  { id: 'back', label: 'Back', muscles: BODY_AREA_MAP.back.muscles },
+  { id: 'legs', label: 'Legs', muscles: BODY_AREA_MAP.legs.muscles },
+  { id: 'shoulders', label: 'Shoulders', muscles: BODY_AREA_MAP.shoulders.muscles },
+  { id: 'arms', label: 'Arms', muscles: BODY_AREA_MAP.arms.muscles },
+  { id: 'core', label: 'Core', muscles: BODY_AREA_MAP.core.muscles },
 ]
 
-/** The body area shown in a row, derived from the exercise's first muscle. */
+/** The body area shown in a row: the first chip the exercise matches. */
 function areaFor(exercise: Exercise): string {
-  const first = exercise.muscles[0]
-  if (!first) return categoryLabel(exercise.category)
-  return first.charAt(0).toUpperCase() + first.slice(1)
+  const match = AREA_FILTERS.find(
+    (filter) =>
+      filter.muscles !== null &&
+      exercise.muscles.some((muscle) => filter.muscles?.includes(muscle)),
+  )
+  return match?.label ?? 'Other'
 }
 
 function matchesQuery(exercise: Exercise, query: string): boolean {
